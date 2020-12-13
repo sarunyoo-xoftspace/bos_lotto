@@ -60,12 +60,14 @@
                             {{ $item->run_bottom_baht }}
                         </td>
                         <td>
+
                             <a href="#" class="btn btn-warning btn-circle btn-sm" wire:click="edit({{ $item->id }})">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             <a href="#" class="btn btn-danger btn-circle btn-sm" wire:click="delete({{ $item->id }})">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
+
                         </td>
                     </tr>
                 @endforeach

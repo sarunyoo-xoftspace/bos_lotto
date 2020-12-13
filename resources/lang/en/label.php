@@ -1,12 +1,17 @@
 <?php
 
-return 
+return
 [
     'app_name' => 'Lottery Banck Office',
 
-    /** Message commond */
+    /** Message common */
     'msg_welcome' =>  '7Src Lottery',
-    'msg_save_success' => ':attribute บันทึกข้อมูลสำเร็จ',
+    'msg_save_success' => 'บันทึก :attribute ข้อมูลสำเร็จ',
+    'msg_update_success' => 'ปรับปรุง :attribute ข้อมูลสำเร็จ',
+    'msg_delete_success' => 'ลบ :attribute ข้อมูลสำเร็จ',
+
+    /** Message  Exception common*/
+    // '' => '',
 
 
     /** keyword Global */
@@ -15,7 +20,7 @@ return
 
     /** Commond Buttom */
     'btn_loing' => 'เข้าสู่ระบบ',
-    'btn_save' => 'บันทึก', 
+    'btn_save' => 'บันทึก',
     'btn_update' => 'ปรับปรุงข้อมูล',
     'btn_delete' => 'ลบข้อมูล',
     'btn_search' => 'ค้นหาข้อมูล',
@@ -37,7 +42,7 @@ return
     'page_login_password' => 'รหัสผ่าน',
 
     /** Page Price Setup */
-    'price_setup_title' => 'อัตราการจ่ายรางวัล', 
+    'price_setup_title' => 'อัตราการจ่ายรางวัล',
     'three_top_baht' => '3 ตัวบน',
     'three_tod_baht' => '3 ตัวโต๊ด',
     'three_bottom_baht' => '3 ตัวล่าง',
@@ -46,6 +51,6 @@ return
     'two_bottom_baht' => '2 ตัวล่าง',
     'run_top_baht' => 'วิ่งบน',
     'run_bottom_baht' => 'วิ่งล่าง'
-    
+
 
 ];

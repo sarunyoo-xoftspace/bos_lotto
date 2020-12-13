@@ -8,7 +8,7 @@ use Debugbar;
 
 class PriceSetups extends Component
 {
-    
+
     public $priceSetups;
 
     public $price_setups_id;
@@ -34,17 +34,14 @@ class PriceSetups extends Component
         'run_top_baht' => 'required|numeric',
         'run_bottom_baht' => 'required|numeric'
     ];
-    
+
     public function render()
     {
-        
-        session()->flash('message', __('label.msg_save_success',['attribute' => __('label.price_setup_title')]));
-    
         $this->priceSetups =  Model::all();
         return view('livewire.price-setups.index');
     }
-    
-    public function create(){ 
+
+    public function create(){
         $this->actionMode = "insert";
         $this->resetInputFields();
         $this->openModal();
@@ -61,7 +58,7 @@ class PriceSetups extends Component
     }
 
     private function resetInputFields()
-    {   
+    {
         $this->three_top_baht = '';
         $this->three_tod_baht = '';
         $this->three_bottom_baht = '';
@@ -71,7 +68,7 @@ class PriceSetups extends Component
         $this->run_top_baht = '';
         $this->run_bottom_baht= '';
     }
-      
+
     public function store()
     {
         $this->validate();
@@ -86,11 +83,13 @@ class PriceSetups extends Component
         $model->run_top_baht = $this->run_top_baht;
         $model->run_bottom_baht= $this->run_bottom_baht;
         $model->save();
-   
+
         $this->closeModal();
         $this->resetInputFields();
+
+        $this->alert('success', __('label.msg_save_success', ['attribute' => __('label.price_setup_title')]));
     }
-    
+
     public function edit($id)
     {
         $model = Model::findOrFail($id);
@@ -102,7 +101,7 @@ class PriceSetups extends Component
         $this->two_bottom_baht = $model->two_bottom_baht;
         $this->run_top_baht = $model->run_top_baht;
         $this->run_bottom_baht = $model->run_bottom_baht;
-        
+
         // Set Id
         $this->price_setups_id = $id;
 
@@ -126,20 +125,17 @@ class PriceSetups extends Component
         $model->run_top_baht = $this->run_top_baht;
         $model->run_bottom_baht= $this->run_bottom_baht;
         $model->save();
-   
-        /*
-        session()->flash('message', 
-             ? 'Todo Updated Successfully.' : 'Todo Created Successfully.');
-        */
 
         $this->closeModal();
         $this->resetInputFields();
+
+        $this->alert('success', __('label.msg_update_success', ['attribute' => __('label.price_setup_title')]));
     }
 
     public function delete($id)
     {
-       //  Model::find($id)->delete();
-        session()->flash('message', 'Todo Deleted Successfully.');
+        Model::find($id)->delete();
+        $this->alert('success', __('label.msg_delete_success', ['attribute' => __('label.price_setup_title')]));
     }
 
 }
