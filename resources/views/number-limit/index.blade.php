@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
-@section('content')
-    <h1>
-        Number Limit
-    </h1>
+@section('title')
+    - {{ __('label.number_limit_title') }}
 @endsection
+
+@section('content')
+    @livewire('number-limit')
+@endsection
+

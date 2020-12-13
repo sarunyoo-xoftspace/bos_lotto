@@ -5,16 +5,16 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-right">
 
-                        <div class="col-xl-6 col-md-8 mb-10">
+                        <div class="col-xl-6 col-md-6 mb-6">
                             <h1 class="h3 mb-0 text-gray-800">
-                                {{ __('label.price_setup_title') }}
+                                {{ __('label.number_limit_title') }}
                             </h1>
                             <small>
                             {{ __('กรณี รองรับหวยรัฐบาลไทย') }}
                             </small>
                         </div>
 
-                        <div class="col-xl-6 col-md-4 mb-2 text-right">
+                        <div class="col-xl-6 col-md-6 mb-6 text-right">
                             @if (!$isOpen)
                                 <a href="#" class="btn btn-success btn-circle btn-lg" wire:click="create">
                                     <i class="fas fa-plus"></i>
@@ -26,7 +26,7 @@
                                         <i class="fas fa-save"></i>
                                     </a>
                                 @else
-                                    <a href="#" class="btn btn-primary btn-circle btn-lg" wire:click="update({{ $price_setups_id }})">
+                                    <a href="#" class="btn btn-primary btn-circle btn-lg" wire:click="update()">
                                         <i class="fas fa-save"></i>
                                     </a>
                                 @endif
@@ -39,11 +39,10 @@
         </div>
     </div>
 
-
     @if ($isOpen)
-        @include('livewire.price-setups.create')
+        @include('livewire.number-limit.create')
     @else
-        @include('livewire.price-setups.datatable')
+        @include('livewire.number-limit.datatable')
     @endif
 
 </div>

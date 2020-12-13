@@ -12,6 +12,5 @@ class NumberLimitController extends Controller
         return view('number-limit.index');
     }
 
-    
 
 }

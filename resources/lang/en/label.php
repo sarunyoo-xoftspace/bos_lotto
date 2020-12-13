@@ -50,7 +50,16 @@ return
     'two_top_baht' => '2 ตัวบน',
     'two_bottom_baht' => '2 ตัวล่าง',
     'run_top_baht' => 'วิ่งบน',
-    'run_bottom_baht' => 'วิ่งล่าง'
+    'run_bottom_baht' => 'วิ่งล่าง',
+
+    /** Page Limit Number */
+    'number_limit_title' => 'กำหนดเลขอั้น',
+    'number_limit' => 'เลขอั้น',
+    'payment_amount_percent' =>  'จ่ายเปอร์เช็น',
+    'payment_amount_baht' => 'จ่ายบาท',
+
+    /** Page Batch */
+
 
 
 ];

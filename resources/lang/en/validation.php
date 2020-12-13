@@ -93,7 +93,7 @@ return [
     'multiple_of' => 'The :attribute must be a multiple of :value',
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
-    'numeric' => 'The :attribute must be a number.',
+    'numeric' => ':attribute กรุณากรอกเป็นตัวเลขเท่านั้น',
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
@@ -148,6 +148,8 @@ return [
     */
 
     'attributes' => [
+
+        /** Price Setups */
         'three_top_baht' => __('label.three_top_baht') ,
         'three_tod_baht' => __('label.three_tod_baht') ,
         'three_bottom_baht' => __('label.three_bottom_baht'),
@@ -155,7 +157,12 @@ return [
         'two_top_baht' => __('label.two_top_baht'),
         'two_bottom_baht' => __('label.two_bottom_baht'),
         'run_top_baht' => __('label.run_top_baht'),
-        'run_bottom_baht' => __('label.run_bottom_baht')
+        'run_bottom_baht' => __('label.run_bottom_baht'),
+
+        /** Number Limit */
+        'number_limit' => __('label.number_limit'),
+        'payment_amount_percent' => __('label.payment_amount_percent'),
+        'payment_amount_baht' => __('label.payment_amount_baht'),
     ],
 
 ];
