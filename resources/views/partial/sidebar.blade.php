@@ -1,6 +1,6 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
+    {{-- Sidebar - Brand --}}
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{  route("home") }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
@@ -10,12 +10,12 @@
         </div>
     </a>
 
-    <!-- Divider -->
+    {{-- Divider --}}
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
+    {{-- Nav Item - Dashboard --}}
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{  route("home") }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>
                 {{ __("label.menu_home") }}
@@ -23,10 +23,10 @@
         </a>
     </li>
 
-    <!-- Divider -->
+    {{-- Divider --}}
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    {{-- Nav Item - Pages Collapse Menu --}}
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
@@ -45,7 +45,7 @@
         </div>
     </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
+    {{-- Nav Item - Utilities Collapse Menu --}}
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
@@ -64,10 +64,10 @@
         </div>
     </li>
 
-    <!-- Divider -->
+    {{-- Divider --}}
     <hr class="sidebar-divider">
 
-    <!-- Sidebar Toggler (Sidebar) -->
+    {{-- Sidebar Toggler (Sidebar) --}}
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
