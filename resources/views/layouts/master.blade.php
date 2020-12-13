@@ -22,72 +22,52 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
     <link href="{{ asset('assets/theme/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/toats/toastr.min.css') }}" rel="stylesheet">
     
     @livewireStyles
 </head>
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
         @include('partial.sidebar')
-        <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
                 @include('partial.topbar')
-                <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    
                     @yield('content')
 
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
-
             @include('partial.footer')
 
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
     @include('partial.modal-logout')
 
-    <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('assets/theme/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/theme/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- Core plugin JavaScript-->
     <script src="{{ asset('assets/theme/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-    <!-- Custom scripts for all pages-->
     <script src="{{ asset('assets/theme/js/sb-admin-2.min.js') }}"></script>
-
+    <script src="{{ asset('assets/toats/toastr.min.js') }}"></script>
+    
     @livewireScripts
+
+    @yield('js')
 
 </body>
 

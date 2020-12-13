@@ -15,6 +15,10 @@ use App\Http\Controllers\NumberLimitController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', function () {
+    return view('test');
+});
+
 Route::get('/', function () {
     return redirect(route("login"));
 });

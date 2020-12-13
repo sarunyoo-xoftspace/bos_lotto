@@ -6,6 +6,7 @@ return
 
     /** Message commond */
     'msg_welcome' =>  '7Src Lottery',
+    'msg_save_success' => ':attribute บันทึกข้อมูลสำเร็จ',
 
 
     /** keyword Global */
@@ -34,5 +35,17 @@ return
     /** Label page login */
     'page_login_username' => 'อีเมล์',
     'page_login_password' => 'รหัสผ่าน',
+
+    /** Page Price Setup */
+    'price_setup_title' => 'อัตราการจ่ายรางวัล', 
+    'three_top_baht' => '3 ตัวบน',
+    'three_tod_baht' => '3 ตัวโต๊ด',
+    'three_bottom_baht' => '3 ตัวล่าง',
+    'three_prefix_baht' => '3 ตัวหน้า',
+    'two_top_baht' => '2 ตัวบน',
+    'two_bottom_baht' => '2 ตัวล่าง',
+    'run_top_baht' => 'วิ่งบน',
+    'run_bottom_baht' => 'วิ่งล่าง'
     
+
 ];

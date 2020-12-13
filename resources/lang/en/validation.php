@@ -147,6 +147,15 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'three_top_baht' => __('label.three_top_baht') ,
+        'three_tod_baht' => __('label.three_tod_baht') ,
+        'three_bottom_baht' => __('label.three_bottom_baht'),
+        'three_prefix_baht' => __('label.three_prefix_baht'),
+        'two_top_baht' => __('label.two_top_baht'),
+        'two_bottom_baht' => __('label.two_bottom_baht'),
+        'run_top_baht' => __('label.run_top_baht'),
+        'run_bottom_baht' => __('label.run_bottom_baht')
+    ],
 
 ];
