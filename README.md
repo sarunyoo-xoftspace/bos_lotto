@@ -10,3 +10,5 @@ return redirect()->route('your route name')->with('info','This is xyz informatio
 
 
 ### Rate การจ่าย 19 ประตู เท่ากับ สองตัวบน สองตัวล่าง
+
+href="javascript:void(0)"

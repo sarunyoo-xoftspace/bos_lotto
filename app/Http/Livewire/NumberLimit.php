@@ -4,9 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\NumberLimit as Model;
+use App\Models\Batches as Batches;
+use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
 class NumberLimit extends Component
 {
+
+    use WithPagination;
 
     public $number_limit_id;
     public $number_limit;
@@ -20,6 +25,24 @@ class NumberLimit extends Component
     public $models;
     public $model;
 
+    /** Configuration Paginate */
+    protected $paginationTheme = 'bootstrap';
+    public $search = '';
+
+    /** Batches */
+    public $batches;
+
+    public function mount()
+    {
+        # code...
+        $this->batches = Batches::first();
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     protected $rules = [
         'number_limit' => 'required|numeric',
         'payment_amount_percent' => 'numeric',
@@ -28,9 +51,16 @@ class NumberLimit extends Component
 
     public function render()
     {
-        $this->models = Model::all();
-        return view('livewire.number-limit.index');
+        return view('livewire.number-limit.index',[
+            // 'items' => Model::where('number_limit', 'like', '%'.$this->search.'%')->paginate(3)
+            'items' => DB::table('number_limits')
+                    ->join('batches', 'batches.id', '=', 'number_limits.batch_id')
+                    ->select('batches.lottery_date',  'number_limit' , 'payment_amount_percent' , 'payment_amount_baht', 'number_limits.id')
+                    ->where('number_limits.number_limit', 'like', '%'.$this->search.'%')
+                    ->paginate(10)
+        ]);
     }
+
 
 
     public function create(){
@@ -62,8 +92,9 @@ class NumberLimit extends Component
 
         $model = new Model;
         $model->number_limit = $this->number_limit;
-        $model->payment_amount_percent = $this->payment_amount_percent;
-        $model->payment_amount_baht = $this->payment_amount_baht;
+        $model->payment_amount_percent = !empty($this->payment_amount_percent) ? $this->payment_amount_percent : 0;
+        $model->payment_amount_baht = !empty($this->payment_amount_baht) ? $this->payment_amount_baht : 0;
+        $model->batch_id = $this->batches->id;
         $model->save();
 
         $this->closeModal();

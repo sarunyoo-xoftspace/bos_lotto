@@ -45,6 +45,34 @@
         </div>
     </li>
 
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('lottery-reward') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>
+                {{ __('label.lottery_rewards') }}
+            </span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('lottery-bet') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>
+                {{ __('label.lottery_bet') }}
+            </span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('check-bet-correct') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>
+                {{ __('label.check_bet_correct') }}
+            </span>
+        </a>
+    </li>
+
     {{-- Nav Item - Utilities Collapse Menu --}}
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

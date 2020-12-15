@@ -18,7 +18,7 @@ return [
     'after' => 'The :attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
     'alpha' => 'The :attribute may only contain letters.',
-    'alpha_dash' => 'The :attribute may only contain letters, numbers, dashes and underscores.',
+    'alpha_dash' => 'The :attribute may only contain letters, numbeds, dashes and underscores.',
     'alpha_num' => 'The :attribute may only contain letters and numbers.',
     'array' => 'The :attribute must be an array.',
     'before' => 'The :attribute must be a date before :date.',
@@ -35,7 +35,7 @@ return [
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
     'different' => 'The :attribute and :other must be different.',
-    'digits' => 'The :attribute must be :digits digits.',
+    'digits' => ' :attribute ไม่ควรเกิน :digits ตัวอักษร',
     'digits_between' => 'The :attribute must be between :min and :max digits.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
@@ -163,6 +163,17 @@ return [
         'number_limit' => __('label.number_limit'),
         'payment_amount_percent' => __('label.payment_amount_percent'),
         'payment_amount_baht' => __('label.payment_amount_baht'),
+
+        /** Lottery Reward */
+        'first_prize' => __('label.first_prize'),
+        'three_digit_prefix_1' => __('label.three_digit_prefix_1'),
+        'three_digit_prefix_2' => __('label.three_digit_prefix_2'),
+        'three_digit_suffix_1' => __('label.three_digit_suffix_1'),
+        'three_digit_suffix_2' => __('label.three_digit_suffix_2'),
+        'two_digit_suffix' => __('label.two_digit_suffix'),
+
+
+
     ],
 
 ];

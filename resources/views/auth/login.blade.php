@@ -22,12 +22,36 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/theme/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+
+    <style>
+        .bg-gradient-primary {
+            font-size: 1em;
+            box-sizing: border-box;
+            border: none;
+            border-radius: .2em;
+            height: auto;
+            width: auto;
+            line-height: 1.9em;
+            text-transform: uppercase;
+            padding: 3px 0;
+            /* box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4), inset 0 -1px 2px 1px rgba(139,66,8,1), inset 0 -1px 1px 2px rgba(250,227,133,1); */
+            background-image: linear-gradient(160deg, #a54e07, #b47e11, #fef1a2, #bc881b, #a54e07);
+            color: rgb(120,50,5);
+            text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
+            cursor: pointer;
+            transition: all .2s ease-in-out;
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+
+    </style>
 </head>
 
 <body class="bg-gradient-primary">
 
     <div class="container">
-        
+
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -45,7 +69,7 @@
                                             {{ __("label.msg_welcome") }}
                                         </h1>
                                     </div>
-                                    
+
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
@@ -55,12 +79,12 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    
+
                                     <form method="POST" action="{{ route('login') }}" class="user">
                                         @csrf
-                                    
+
                                         <div class="form-group">
-                                            <input type="email" 
+                                            <input type="email"
                                                 class="form-control form-control-user @error('email') is-invalid @enderror"
                                                 id="email" name="email"
                                                 aria-describedby="{{ __("label.page_login_username") }}"
@@ -69,7 +93,7 @@
                                                 >
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" 
+                                            <input type="password"
                                                 class="form-control form-control-user @error('password') is-invalid @enderror"
                                                 id="password" name="password"
                                                 placeholder="{{ __('label.page_login_password') }}">

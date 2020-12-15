@@ -59,7 +59,25 @@ return
     'payment_amount_baht' => 'จ่ายบาท',
 
     /** Page Batch */
+    'lottery_date' => 'วันที่ออกรางวัล',
 
 
+    /** Page Lottery Reward */
+    'lottery_rewards' => 'ประกาศผลรางวัล',
+    'first_prize' => 'รางวัลที่ 1',
+	'three_digit_prefix_1' => '3 ตัวหน้า(1)',
+	'three_digit_prefix_2' => '3 ตัวหน้า(2)',
+	'three_digit_suffix_1' => '3 ตัวหลัง(1)',
+	'three_digit_suffix_2' => '3 ตัวหลัง(2)',
+    'two_digit_suffix' => '2 ตัวล่าง',
+
+    /** Page Lottery Bet */
+    'lottery_bet' => 'แทงหวย',
+    'customer_name' => 'ชื่อลูกค้า',
+    'mobile' => 'เบอร์โทรศัพท์',
+
+
+    /** Page Check Bet Correct */
+    'check_bet_correct' =>  'ตรวจสอบรายการผู้ถูกหวย',
 
 ];

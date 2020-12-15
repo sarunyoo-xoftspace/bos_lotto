@@ -26,7 +26,7 @@
                                         <i class="fas fa-save"></i>
                                     </a>
                                 @else
-                                    <a href="#" class="btn btn-primary btn-circle btn-lg" wire:click="update()">
+                                    <a href="#" class="btn btn-primary btn-circle btn-lg" wire:click="update({{ $number_limit_id }})">
                                         <i class="fas fa-save"></i>
                                     </a>
                                 @endif

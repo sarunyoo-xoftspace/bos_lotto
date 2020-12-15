@@ -18,4 +18,9 @@ class NumberLimit extends Model
         'batch_id'
     ];
 
+    public function batch()
+    {
+        return $this->belongsTo(Batches::class);
+    }
+
 }

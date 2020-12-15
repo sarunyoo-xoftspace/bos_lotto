@@ -4,7 +4,7 @@
             <div class="card-body">
 
                 <div class="row form-row no-gutters">
-                    <div class="col-xl-4 col-md-4 mb-4 form-group">
+                    <div class="col-xl-3 col-md-3 mb-3 form-group">
                         <label for="number_limit">
                             {{ __('label.number_limit') }}
                         </label>
@@ -14,7 +14,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-xl-4 col-md-4 mb-4 form-group">
+                    <div class="col-xl-3 col-md-3 mb-3 form-group">
                         <label for="payment_amount_percent">
                             {{ __('label.payment_amount_percent') }}
                         </label>
@@ -24,7 +24,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-xl-4 col-md-4 mb-4 form-group">
+                    <div class="col-xl-3 col-md-3 mb-3 form-group">
                         <label for="payment_amount_baht">
                             {{ __('label.payment_amount_baht') }}
                         </label>
@@ -33,6 +33,14 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="col-xl-3 col-md-3 mb-3 form-group">
+                        <label for="payment_amount_baht">
+                            {{ __('label.lottery_date') }}
+                        </label>
+                        <input type="text" class="form-control" value="{{ $batches->lottery_date }}" readonly />
+                    </div>
+
                 </div>
             </div>
         </div>
