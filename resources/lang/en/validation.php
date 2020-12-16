@@ -172,6 +172,10 @@ return [
         'three_digit_suffix_2' => __('label.three_digit_suffix_2'),
         'two_digit_suffix' => __('label.two_digit_suffix'),
 
+        /** Lottery Bet Number */
+        'customer_name' => __('label.customer_name'),
+        'mobile' => __('label.mobile')
+
 
 
     ],

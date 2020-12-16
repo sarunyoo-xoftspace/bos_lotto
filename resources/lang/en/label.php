@@ -5,7 +5,7 @@ return
     'app_name' => 'Lottery Banck Office',
 
     /** Message common */
-    'msg_welcome' =>  '7Src Lottery',
+    'msg_welcome' =>  'LOTTERY',
     'msg_save_success' => 'บันทึก :attribute ข้อมูลสำเร็จ',
     'msg_update_success' => 'ปรับปรุง :attribute ข้อมูลสำเร็จ',
     'msg_delete_success' => 'ลบ :attribute ข้อมูลสำเร็จ',
@@ -75,7 +75,6 @@ return
     'lottery_bet' => 'แทงหวย',
     'customer_name' => 'ชื่อลูกค้า',
     'mobile' => 'เบอร์โทรศัพท์',
-
 
     /** Page Check Bet Correct */
     'check_bet_correct' =>  'ตรวจสอบรายการผู้ถูกหวย',
