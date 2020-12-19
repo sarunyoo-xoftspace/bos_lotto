@@ -7,6 +7,8 @@ use App\Http\Controllers\NumberLimitController;
 use App\Http\Controllers\LotteryRewardController;
 use App\Http\Controllers\LotteryBetController;
 use App\Http\Controllers\CheckBetCorrectController;
+use App\Http\Controllers\BackEndController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,8 +44,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/lottery-bet', [LotteryBetController::class, 'index'])->name('lottery-bet');
 
     Route::get('/check-bet-correct',[CheckBetCorrectController::class, 'index'])->name('check-bet-correct');
+
+    Route::get('/list-bet-transactions', [ BackEndController::class, 'listBetTransactions'])->name('list-bet-transactions');
+ 
 });
-
-
-
-

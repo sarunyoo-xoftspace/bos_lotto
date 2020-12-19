@@ -2,7 +2,7 @@
     <div class="col-xl-12 col-md-12 mb-12 form-group">
         <p>
             <strong>
-                19 ประเภท
+                {{ $bet_type_title }}
             </strong>
             <hr/>
         </p>
@@ -10,23 +10,93 @@
 </div>
 
 <div class="row">
-    <div class="col-xl-12 col-md-12 mb-12 form-group">
-        <input type="text" class="form-control @error('numberDoorInput') is-invalid @enderror" wire:model="numberDoorInput" placeholder="กรอกตัวเลข 1 ตัว" maxlength="1"/>
+    <div class="col-xl-6 col-md-6 mb-6 form-group">
+        <input type="text" class="form-control @error('numberDoorInput') is-invalid @enderror" wire:model="numberDoorInput" wire:keydown="genNumberRood" placeholder="กรอกตัวเลข 1 ตัว" maxlength="1"/>
         @error('numberDoorInput')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
-</div>
 
+    {{-- 
+    <div class="col-xl-3 col-md-3 mb-3 form-group">
+        <div class="btn-group btn-block btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="radio" wire:model="topOrBottome" autocomplete="off" value="top" checked> บน
+            </label>
+            <label class="btn btn-secondary">
+              <input type="radio" wire:model="topOrBottome" autocomplete="off" value="bottom"> ล่าง
+            </label>
+          </div>
+    </div>
+    --}}
+
+    <div class="col-xl-6 col-md-6 mb-6 form-group">
+        <input type="text" class="form-control @error('bathBetPerNumber') is-invalid @enderror" wire:model="bathBetPerNumber" placeholder="จำนวนเงินแทง" maxlength="8"/>
+        @error('bathBetPerNumber')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+</div>
 <div class="row">
     <div class="col-xl-6 col-md-6 mb-6 form-group">
-        <button type="button" class="btn btn-block btn-outline-success" wire:click="roodFront">
-            {{ __('รูดหน้า') }}
+        <button type="button" class="btn btn-block btn-primary" wire:click="genNumberRood">
+            {{ __('คำนวนเลข 19 ประตู') }}
         </button>
     </div>
     <div class="col-xl-6 col-md-6 mb-6 form-group">
-        <button type="button" class="btn btn-block btn-outline-success" wire:click="roodBack">
-            {{ __('รูดหลัง') }}
+        <button type="button" class="btn btn-block btn-warning" wire:click="confirm19Door">
+            {{ __('ยืนยันการแทง') }}
         </button>
     </div>
 </div>
+
+@if(!empty($roodNumberArray))
+
+@php
+    $column = 1;
+@endphp
+
+    @php 
+
+        $indexFindValue = 0;
+        $row_count = 0;
+    @endphp 
+
+
+    @for($i = 0; $i <= (count($roodNumberArray) % 4) + 1; $i++)
+
+        <div class="row">
+
+            @if ($indexFindValue < ( count($roodNumberArray) - 1))
+                
+                @for($k = 0; $k <= 3; $k++)
+                    <div class="col-xl-3 col-md-3 mb-3">
+                        <button class="btn btn-block btn-outline-danger">
+                            {{ $roodNumberArray[$indexFindValue] }}
+                        </button>
+                    </div>
+
+                    @if($indexFindValue == ( count($roodNumberArray) - 1))
+                        @php
+                          break;
+                        @endphp
+                    @endif
+
+                    @php
+                        $indexFindValue++;
+                    @endphp 
+                    
+                @endfor
+            
+            @endif
+
+        </div>
+
+        @php 
+            $row_count += 4;
+        @endphp 
+
+    @endfor
+
+@endempty

@@ -174,10 +174,8 @@ return [
 
         /** Lottery Bet Number */
         'customer_name' => __('label.customer_name'),
-        'mobile' => __('label.mobile')
-
-
-
+        'mobile' => __('label.mobile'),
+        'numberDoorInput' => 'เลขโพยหวย',
     ],
 
 ];

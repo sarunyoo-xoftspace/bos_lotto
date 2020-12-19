@@ -9,10 +9,12 @@ return
     'msg_save_success' => 'บันทึก :attribute ข้อมูลสำเร็จ',
     'msg_update_success' => 'ปรับปรุง :attribute ข้อมูลสำเร็จ',
     'msg_delete_success' => 'ลบ :attribute ข้อมูลสำเร็จ',
+    'msg_confirm_bet_success' => 'ยืนยันการแทงเรียบร้อย',
+    'msg_send_bet_success' => 'ส่งโพยหวยเรียบร้อย',
+    'msg_confirm_bet_warninng' =>  'กรุณาตรวจสอบข้อมูล',
 
     /** Message  Exception common*/
     // '' => '',
-
 
     /** keyword Global */
     'profile' => 'ประวัติส่วนตัว',
@@ -79,4 +81,9 @@ return
     /** Page Check Bet Correct */
     'check_bet_correct' =>  'ตรวจสอบรายการผู้ถูกหวย',
 
+    /** Page check User Bet */
+    'check_bet_transactions' => 'ตรวจสอบรายแทงหวย',
+    'bet_number' => 'เลขหวย',
+    'bet_amount' => 'จำนวนเงินที่แทง',
+    'bet_type' => 'ประเภทหวย'
 ];

@@ -65,6 +65,15 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('list-bet-transactions') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>
+                {{ __('label.check_bet_transactions') }}
+            </span>
+        </a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('check-bet-correct') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>
