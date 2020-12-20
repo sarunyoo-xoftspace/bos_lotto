@@ -176,6 +176,10 @@ return [
         'customer_name' => __('label.customer_name'),
         'mobile' => __('label.mobile'),
         'numberDoorInput' => 'เลขโพยหวย',
+        
+        'threeNumbetBet' => 'เลขหวย',
+        'bathBetPerNumber' => 'จำนวนเงิน',
+        
     ],
 
 ];

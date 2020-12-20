@@ -15,7 +15,8 @@ class BetType extends Model
         "name",
         "flag_door",
         "flag_code ",
-        "reward_amount_baht"
+        "reward_amount_baht",
+        "cal_type"
     ];
     
 }

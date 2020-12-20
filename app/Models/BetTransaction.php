@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class BetTransaction extends Model
 {
     use HasFactory;
-
         
     protected $table = "bet_transactions";
 
@@ -18,6 +17,9 @@ class BetTransaction extends Model
         'bet_number',
         'bet_amount',
         'bet_type_id',
-        'payment_status'
+        'flag_is_correct',
+        'payment_status',
+        'payment_amount'
     ];
+    
 }

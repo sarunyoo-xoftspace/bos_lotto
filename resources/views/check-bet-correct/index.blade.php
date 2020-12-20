@@ -5,9 +5,5 @@
 @endsection
 
 @section('content')
-
-    <h1>
-        {{ __('label.check_bet_correct')}}
-    </h1>
-
+    @livewire('check-bet-correct')
 @endsection

@@ -23,7 +23,6 @@ class BetTransaction extends Component
 
     public function mount()
     {
-        # code...
         $this->batches = Batches::first();
     }
     

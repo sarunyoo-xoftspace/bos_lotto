@@ -7,7 +7,7 @@
 
                         <div class="col-xl-6 col-md-6 mb-6">
                             <h1 class="h3 mb-0 text-gray-800">
-                                {{ __('label.check_bet_transactions') }}
+                                {{ __('label.check_bet_correct') }}
                             </h1>
                             <small>
                             {{ __('กรณี รองรับหวยรัฐบาลไทย') }}
@@ -56,6 +56,9 @@
                         <th>
                             {{ __('label.bet_amount') }}
                         </th>
+                        <th>
+                            {{ __('label.payment_amount') }}
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,6 +79,9 @@
                             </td>
                             <td>
                                 {{ $item->bet_amount}}
+                            </td>
+                            <td>
+                                {{ $item->payment_amount }}
                             </td>
                         </tr>
                     @endforeach

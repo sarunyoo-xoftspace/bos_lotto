@@ -19,6 +19,11 @@ use App\Http\Controllers\BackEndController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+})->name("clear-cache");
+
 Route::get('/test', function () {
     return view('test');
 });

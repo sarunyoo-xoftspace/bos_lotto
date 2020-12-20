@@ -73,5 +73,10 @@
             @include('livewire.lottery-bet.two_digit')
         @endif
         
+        @if ($type == 'run_top' || $type == "run_bottom")
+            @include('livewire.lottery-bet.run-number')
+        @endif
+
+        
     </div>
 </div>

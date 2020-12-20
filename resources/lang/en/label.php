@@ -80,10 +80,14 @@ return
 
     /** Page Check Bet Correct */
     'check_bet_correct' =>  'ตรวจสอบรายการผู้ถูกหวย',
+    'payment_amount' => "จำนวนถูกชนะ",
 
     /** Page check User Bet */
-    'check_bet_transactions' => 'ตรวจสอบรายแทงหวย',
+    'check_bet_transactions' => 'ตรวจสอบรายการแทงหวย',
     'bet_number' => 'เลขหวย',
     'bet_amount' => 'จำนวนเงินที่แทง',
-    'bet_type' => 'ประเภทหวย'
+    'bet_type' => 'ประเภทหวย', 
+
+
+    'lottery_processing' => 'คำนวนคนถูกรางวัล',
 ];
