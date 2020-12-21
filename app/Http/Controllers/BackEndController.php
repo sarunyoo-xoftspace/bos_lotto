@@ -13,6 +13,10 @@ class BackEndController extends Controller
         return view('backend.list-bet-transactions');
     }
 
+    public function batche()
+    {
+        return view('backend.batche');
+    }
     
 
 

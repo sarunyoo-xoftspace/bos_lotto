@@ -51,5 +51,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/check-bet-correct',[CheckBetCorrectController::class, 'index'])->name('check-bet-correct');
 
     Route::get('/list-bet-transactions', [ BackEndController::class, 'listBetTransactions'])->name('list-bet-transactions');
+    
+    Route::get('/batche', [BackEndController::class, 'batche'])->name('batche');
  
 });

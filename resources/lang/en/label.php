@@ -9,9 +9,11 @@ return
     'msg_save_success' => 'บันทึก :attribute ข้อมูลสำเร็จ',
     'msg_update_success' => 'ปรับปรุง :attribute ข้อมูลสำเร็จ',
     'msg_delete_success' => 'ลบ :attribute ข้อมูลสำเร็จ',
+    'msg_confrim_delete' => 'คุณต้องการลบ :attribute นี้หรือไม่ ?',
     'msg_confirm_bet_success' => 'ยืนยันการแทงเรียบร้อย',
     'msg_send_bet_success' => 'ส่งโพยหวยเรียบร้อย',
     'msg_confirm_bet_warninng' =>  'กรุณาตรวจสอบข้อมูล',
+    
 
     /** Message  Exception common*/
     // '' => '',
@@ -90,4 +92,10 @@ return
 
 
     'lottery_processing' => 'คำนวนคนถูกรางวัล',
+
+    /** Batche */
+    'batche' => 'รอบหวยรัฐบาล',
+    'lotterDate' => 'วันที่',
+    'lotterTime' => 'เวลา',
+
 ];

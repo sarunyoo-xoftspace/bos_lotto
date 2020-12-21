@@ -21,6 +21,8 @@
     </form>
     --}}
 
+    @livewire('show-lottery-date')
+
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 
