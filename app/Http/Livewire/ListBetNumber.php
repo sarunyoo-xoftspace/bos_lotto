@@ -18,7 +18,10 @@ class ListBetNumber extends Component
     // 
     public $roodNumberArray;
 
-     // เก็บข้อมูลเลขการแทง
+    // for confirm delete
+    public $confirming = false;
+
+    // เก็บข้อมูลเลขการแทง
     public $list_bet_number = [
         
             /* Example data.
@@ -115,6 +118,17 @@ class ListBetNumber extends Component
     {
         unset($this->list_bet_number); 
         $this->list_bet_number = array(); 
+        $this->confirming = false;
+    }
+
+    public function confirmClearBet()
+    {
+        $this->confirming = true;
+    }
+    
+    public function clearCancel()
+    {
+        $this->confirming = false;
     }
 
     public function confirmBet()

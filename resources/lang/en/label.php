@@ -34,6 +34,7 @@ return
 
     /** Commond Exception */
     "ex.page.not.found" => 'เกิดข้อผิดพลาด ไม่มีหน้าอยู่จริง กรุณาตรวจสอบข้อมูล',
+    "ex_exception" => 'เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล',
 
     /** Menu */
     "menu_home" => "หน้าแรก",
@@ -55,6 +56,9 @@ return
     'two_bottom_baht' => '2 ตัวล่าง',
     'run_top_baht' => 'วิ่งบน',
     'run_bottom_baht' => 'วิ่งล่าง',
+    'betTypeName' => 'ประเภทหวย',
+    'betTypeRewardAmount' => 'เงินรางวัล',
+    
 
     /** Page Limit Number */
     'number_limit_title' => 'กำหนดเลขอั้น',

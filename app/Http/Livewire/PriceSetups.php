@@ -4,138 +4,65 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\PriceSetups as Model;
+use App\Models\BetType;
 use Debugbar;
 
 class PriceSetups extends Component
 {
 
-    public $priceSetups;
-
-    public $price_setups_id;
-    public $three_top_baht;
-    public $three_tod_baht;
-    public $three_bottom_baht;
-    public $three_prefix_baht;
-    public $two_top_baht;
-    public $two_bottom_baht;
-    public $run_top_baht;
-    public $run_bottom_baht;
-
-    public $isOpen = 0;
-    public $actionMode = '';
+    // For model
+    public $betTypes;
+    // public $betType;
+    
+    // For Attribute
+    public $betTypeId;
+    public $betTypeName;
+    public $betTypeRewardAmount;
+    
+    // For confirm delete data
+    public $confirming;
+    
+    // For mode action
+    public $mode;
 
     protected $rules = [
-        'three_top_baht' => 'required|numeric',
-        'three_tod_baht' => 'required|numeric',
-        'three_bottom_baht' => 'required|numeric',
-        'three_prefix_baht' => 'required|numeric',
-        'two_top_baht' => 'required|numeric',
-        'two_bottom_baht' => 'required|numeric',
-        'run_top_baht' => 'required|numeric',
-        'run_bottom_baht' => 'required|numeric'
+        'betTypeRewardAmount' => 'required|numeric'
     ];
+
+    public function mount()
+    {
+        $this->mode = "list";
+        $this->betTypes = BetType::all();
+    }
+
+    public function update()
+    {
+        $this->validate();
+        
+        $model = BetType::find($this->betTypeId);
+        if($model){ 
+            $model->reward_amount_baht = $this->betTypeRewardAmount;
+            $model->save();
+            $this->alert('success', __('label.msg_save_success', ['attribute' => __('label.price_setup_title')]));
+        } else { 
+            $this->alert('success', __('label.ex_exception'));
+        }
+
+        $this->mode = "list";        
+        $this->betTypes = BetType::all();
+    }
+
+    public function edit($id) { 
+        $model= BetType::find($id);
+        $this->betTypeId = $model->id;
+        $this->betTypeName = $model->name;
+        $this->betTypeRewardAmount = $model->reward_amount_baht;
+        $this->mode = "update";
+    }
 
     public function render()
     {
-        $this->priceSetups =  Model::all();
         return view('livewire.price-setups.index');
-    }
-
-    public function create(){
-        $this->actionMode = "insert";
-        $this->resetInputFields();
-        $this->openModal();
-    }
-
-    public function openModal()
-    {
-        $this->isOpen = true;
-    }
-
-    public function closeModal()
-    {
-        $this->isOpen = false;
-    }
-
-    private function resetInputFields()
-    {
-        $this->three_top_baht = '';
-        $this->three_tod_baht = '';
-        $this->three_bottom_baht = '';
-        $this->three_prefix_baht = '';
-        $this->two_top_baht = '';
-        $this->two_bottom_baht = '';
-        $this->run_top_baht = '';
-        $this->run_bottom_baht= '';
-    }
-
-    public function store()
-    {
-        $this->validate();
-
-        $model = new Model;
-        $model->three_top_baht = $this->three_top_baht;
-        $model->three_tod_baht = $this->three_tod_baht;
-        $model->three_bottom_baht = $this->three_bottom_baht;
-        $model->three_prefix_baht = $this->three_prefix_baht;
-        $model->two_top_baht = $this->two_top_baht;
-        $model->two_bottom_baht = $this->two_bottom_baht;
-        $model->run_top_baht = $this->run_top_baht;
-        $model->run_bottom_baht= $this->run_bottom_baht;
-        $model->save();
-
-        $this->closeModal();
-        $this->resetInputFields();
-
-        $this->alert('success', __('label.msg_save_success', ['attribute' => __('label.price_setup_title')]));
-    }
-
-    public function edit($id)
-    {
-        $model = Model::findOrFail($id);
-        $this->three_top_baht = $model->three_top_baht;
-        $this->three_tod_baht = $model->three_tod_baht;
-        $this->three_bottom_baht = $model->three_bottom_baht;
-        $this->three_prefix_baht = $model->three_prefix_baht;
-        $this->two_top_baht = $model->two_top_baht;
-        $this->two_bottom_baht = $model->two_bottom_baht;
-        $this->run_top_baht = $model->run_top_baht;
-        $this->run_bottom_baht = $model->run_bottom_baht;
-
-        // Set Id
-        $this->price_setups_id = $id;
-
-        // Set Mode
-        $this->actionMode = "update";
-
-        $this->openModal();
-    }
-
-    public function update($id)
-    {
-        $this->validate();
-
-        $model = Model::find($id);
-        $model->three_top_baht = $this->three_top_baht;
-        $model->three_tod_baht = $this->three_tod_baht;
-        $model->three_bottom_baht = $this->three_bottom_baht;
-        $model->three_prefix_baht = $this->three_prefix_baht;
-        $model->two_top_baht = $this->two_top_baht;
-        $model->two_bottom_baht = $this->two_bottom_baht;
-        $model->run_top_baht = $this->run_top_baht;
-        $model->run_bottom_baht= $this->run_bottom_baht;
-        $model->save();
-
-        $this->closeModal();
-        $this->resetInputFields();
-
-        $this->alert('success', __('label.msg_update_success', ['attribute' => __('label.price_setup_title')]));
-    }
-
-    public function delete($id)
-    {
-        Model::find($id)->delete();
-        $this->alert('success', __('label.msg_delete_success', ['attribute' => __('label.price_setup_title')]));
     }
 
 }

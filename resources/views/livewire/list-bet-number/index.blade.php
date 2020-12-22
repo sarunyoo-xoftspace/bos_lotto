@@ -73,9 +73,20 @@
             </div>
             
             <div class="col-md-4">
-                <button type="button" class="btn btn-block btn-outline-danger" wire:click="clearBet">
-                    {{ __('ลบโพยแทงหวย')}}
-                </button>
+                @if($confirming)
+                    <button type="button" class="btn btn-block btn-danger" wire:click="clearBet">
+                        {{ __('ต้องการยืนยันการลบ โพยนี้หรือไม่ ?')}}
+                    </button>
+                    <button type="button" class="btn btn-block btn-secondary" wire:click="clearCancel">
+                        {{ __('ยกเลิก')}}
+                    </button>
+                @else 
+                    <button type="button" class="btn btn-block btn-outline-danger" wire:click="confirmClearBet">
+                        {{ __('ลบโพยแทงหวย')}}
+                    </button>
+                @endif
+
+                
             </div>
             <div class="col-md-4">
                 <button type="button" class="btn btn-block btn-outline-primary" wire:click="confirmBet">
