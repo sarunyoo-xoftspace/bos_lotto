@@ -32,6 +32,9 @@ class NumberLimit extends Component
     /** Batches */
     public $batches;
 
+    /** revest */
+    public $is_revest;
+
     public function mount()
     {
         # code...
@@ -84,18 +87,53 @@ class NumberLimit extends Component
         $this->number_limit = '';
         $this->payment_amount_percent = '';
         $this->payment_amount_baht = '';
+        $this->is_revest = false;
+    }
+
+    private function factorial($n){
+        if($n==1) return $n;
+        else return $n * $this->factorial($n-1);
     }
 
     public function store()
     {
         $this->validate();
 
-        $model = new Model;
-        $model->number_limit = $this->number_limit;
-        $model->payment_amount_percent = !empty($this->payment_amount_percent) ? $this->payment_amount_percent : 0;
-        $model->payment_amount_baht = !empty($this->payment_amount_baht) ? $this->payment_amount_baht : 0;
-        $model->batch_id = $this->batches->id;
-        $model->save();
+        if($this->is_revest){
+
+            $a = $this->number_limit;
+            $_a = str_split($a);
+            $num= count($_a);
+            $ele_amnt = $this->factorial($num);
+            $output = array();
+            
+                while(count($output) < $ele_amnt){
+                shuffle($_a);
+                $justnumber = implode("",$_a);	
+                if(!in_array( $justnumber , $output))
+                    $output[] = $justnumber;
+            
+            }
+            
+            sort($output);
+
+            foreach($output as $key => $val) {
+                $model = new Model;
+                $model->number_limit = $val;
+                $model->payment_amount_percent = !empty($this->payment_amount_percent) ? $this->payment_amount_percent : 0;
+                $model->payment_amount_baht = !empty($this->payment_amount_baht) ? $this->payment_amount_baht : 0;
+                $model->batch_id = $this->batches->id;
+                $model->save();   
+            }
+            
+        } else {
+            $model = new Model;
+            $model->number_limit = $this->number_limit;
+            $model->payment_amount_percent = !empty($this->payment_amount_percent) ? $this->payment_amount_percent : 0;
+            $model->payment_amount_baht = !empty($this->payment_amount_baht) ? $this->payment_amount_baht : 0;
+            $model->batch_id = $this->batches->id;
+            $model->save();
+        }
 
         $this->closeModal();
         $this->resetInputFields();

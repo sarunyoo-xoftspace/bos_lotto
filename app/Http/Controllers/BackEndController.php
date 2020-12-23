@@ -18,6 +18,9 @@ class BackEndController extends Controller
         return view('backend.batche');
     }
     
-
+     public function listCheat()
+    {
+        return view('backend.list-cheat');
+    }
 
 }

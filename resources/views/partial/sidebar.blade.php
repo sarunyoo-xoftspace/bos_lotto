@@ -68,6 +68,15 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('list-cheat') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>
+                {{ __('ตรวจสอบโพย') }}
+            </span>
+        </a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('list-bet-transactions') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>

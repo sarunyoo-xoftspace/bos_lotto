@@ -81,11 +81,11 @@ return
 
     /** Page Lottery Bet */
     'lottery_bet' => 'แทงหวย',
-    'customer_name' => 'ชื่อลูกค้า',
+    'customer_name' => 'ชื่อโพย',
     'mobile' => 'เบอร์โทรศัพท์',
 
     /** Page Check Bet Correct */
-    'check_bet_correct' =>  'ตรวจสอบรายการผู้ถูกหวย',
+    'check_bet_correct' =>  'ตรวจสอบรายการถูกหวย',
     'payment_amount' => "จำนวนถูกชนะ",
 
     /** Page check User Bet */

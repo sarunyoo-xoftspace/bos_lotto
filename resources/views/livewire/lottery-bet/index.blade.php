@@ -65,11 +65,11 @@
             @include('livewire.lottery-bet.bet_19_door')
         @endif
 
-        @if ($type == 'three_top' || $type == "three_bottom" || $type == "three_run_top" || $type == "three_run_bottom")
+        @if ($type == 'three_top' || $type == "three_bottom" || $type == "three_tod")
             @include('livewire.lottery-bet.three_digit')
         @endif
 
-        @if ($type == 'two_top' || $type == "two_bottom" || $type == "two_run_top" || $type == "two_run_bottom" )
+        @if ($type == 'two_top' || $type == "two_bottom")
             @include('livewire.lottery-bet.two_digit')
         @endif
         

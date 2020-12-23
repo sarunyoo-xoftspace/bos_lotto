@@ -39,24 +39,16 @@ class LotteryBet extends Component
     // แสดง Component Bet
     public $show_component_bet;
 
-    // เพิ่ม 19 ประตู
-    public function addBetNumber19Door() { 
-        
-    }
+    // ใช้เก็บค่าว่าต้องการกลับเลขไหม ?
+    public $is_revest = false;
 
-    public function addBetNumber() {
-        
-    }
-    
     protected $rules = [
         'customer_name' => 'required',
-        'mobile' => 'required|numeric'
     ];
 
     protected $messages = [
         'numberDoorInput.required' => 'กรุณากรอกข้อมูล'
     ];
-
 
     public function updatedNumberDoorInput() {
         $this->validate([
@@ -135,7 +127,6 @@ class LotteryBet extends Component
         // 1. Validate Profile Name
         $this->validate([
             'customer_name' => 'required',
-            'mobile' => 'required|numeric',
             'bathBetPerNumber' => 'required|numeric',
             'numberDoorInput' => 'required|numeric'
         ]);
@@ -156,7 +147,6 @@ class LotteryBet extends Component
     {
         // กำหนดปุ๋ม Bet Type
         $this->bet_types = BetType::all();
-
         return view('livewire.lottery-bet.index');
     }
 
@@ -167,13 +157,41 @@ class LotteryBet extends Component
             'bathBetPerNumber' => 'required|numeric',
         ]);
 
-        $this->emitTo('list-bet-number', 'add_bet_number', $this->threeNumbetBet, $this->bathBetPerNumber, $this->type);
+        // $this->emitTo('list-bet-number', 'add_bet_number', $this->threeNumbetBet, $this->bathBetPerNumber, $this->type);
+        
+        if($this->is_revest == true){
+        
+            $a = $this->threeNumbetBet;
+            $_a = str_split($a);
+            
+            $num= count($_a);
+            $ele_amnt = $this->factorial($num);
+            $output = array();
+            
+            while(count($output) < $ele_amnt){
+                shuffle($_a);
+                $justnumber = implode("",$_a);	
+                if(!in_array( $justnumber , $output))
+                    $output[] = $justnumber;
+            
+            }
+            sort($output);
+            
+            foreach($output as $key => $val){
+                $this->emitTo('list-bet-number', 'add_bet_number', $val, $this->bathBetPerNumber, $this->type);
+            }
+        
+        } else {
+            $this->emitTo('list-bet-number', 'add_bet_number', $this->threeNumbetBet, $this->bathBetPerNumber, $this->type);
+        }
+
         $this->alert('success', __('label.msg_confirm_bet_success'));
 
         // Reset Form Bet 
         $this->type = "";
         $this->threeNumbetBet = "";
         $this->bathBetPerNumber = "";
+        $this->is_revest = false;
     }
     
     public function addBetTwoDigit()
@@ -183,13 +201,46 @@ class LotteryBet extends Component
             'bathBetPerNumber' => 'required|numeric',
         ]);
 
-        $this->emitTo('list-bet-number', 'add_bet_number', $this->twoNumbetBet, $this->bathBetPerNumber, $this->type);
+        
+        if($this->is_revest == true){
+        
+            $a = $this->twoNumbetBet;
+            $_a = str_split($a);
+            
+            $num= count($_a);
+            $ele_amnt = $this->factorial($num);
+            $output = array();
+            
+            while(count($output) < $ele_amnt){
+                shuffle($_a);
+                $justnumber = implode("",$_a);	
+                if(!in_array( $justnumber , $output))
+                    $output[] = $justnumber;
+            
+            }
+            sort($output);
+            
+            foreach($output as $key => $val){
+                $this->emitTo('list-bet-number', 'add_bet_number', $val, $this->bathBetPerNumber, $this->type);
+            }
+        
+        } else {
+            $this->emitTo('list-bet-number', 'add_bet_number', $this->twoNumbetBet, $this->bathBetPerNumber, $this->type);
+        }
+
         $this->alert('success', __('label.msg_confirm_bet_success'));
 
         // Reset Form Bet 
         $this->type = "";
         $this->twoNumbetBet = "";
         $this->bathBetPerNumber = "";
+        $this->is_revest = false;
+    }
+
+    
+    public function factorial($n){
+        if($n==1) return $n;
+        else return $n* $this->factorial($n-1);
     }
     
 }

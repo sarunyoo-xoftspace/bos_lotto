@@ -5,6 +5,19 @@
 
                 <div class="row form-row no-gutters">
                     <div class="col-xl-3 col-md-3 mb-3 form-group">
+                    </div>
+                    <div class="col-xl-6 col-md-6 mb-6 form-group">
+                        <label for="payment_amount_baht">
+                            {{ __('label.lottery_date') }}
+                        </label>
+                        <input type="text" class="form-control" value="{{ $batches->lottery_date }}" readonly />
+                    </div>
+                    <div class="col-xl-3 col-md-3 mb-3 form-group">
+                    </div>
+                </div>
+
+                <div class="row form-row no-gutters">
+                    <div class="col-xl-6 col-md-6 mb-6 form-group">
                         <label for="number_limit">
                             {{ __('label.number_limit') }}
                         </label>
@@ -14,7 +27,21 @@
                         @enderror
                     </div>
 
-                    <div class="col-xl-3 col-md-3 mb-3 form-group">
+                    <div class="col-xl-6 col-md-6 mb-6 form-group">
+                        <label for="is_revest">
+                            {{ __('กลับเลข') }}
+                        </label>
+                        <input type="checkbox" class="form-control" id="is_revest" wire:model="is_revest">
+                        @if($is_revest)
+                           <p>เมื่อมีการคลิก ระบบจะสร้างเลขกลับ Auto ให้</p> 
+                        @endif
+                    </div>
+                    
+                </div>
+
+                <div class="row form-row no-gutters">
+                    
+                    <div class="col-xl-6 col-md-6 mb-6 form-group">
                         <label for="payment_amount_percent">
                             {{ __('label.payment_amount_percent') }}
                         </label>
@@ -24,7 +51,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-xl-3 col-md-3 mb-3 form-group">
+                    <div class="col-xl-6 col-md-6 mb-6 form-group">
                         <label for="payment_amount_baht">
                             {{ __('label.payment_amount_baht') }}
                         </label>
@@ -32,13 +59,6 @@
                         @error('payment_amount_baht')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                    </div>
-
-                    <div class="col-xl-3 col-md-3 mb-3 form-group">
-                        <label for="payment_amount_baht">
-                            {{ __('label.lottery_date') }}
-                        </label>
-                        <input type="text" class="form-control" value="{{ $batches->lottery_date }}" readonly />
                     </div>
 
                 </div>

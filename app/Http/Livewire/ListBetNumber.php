@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\BetType;
 use App\Models\BetTransaction;
+use App\Models\BetTemp;
+
 /** 
  * Class เป็น component ทางด้านขวามือ เป็นการแสดงรายละเอียด ในการแทงหวย
  */
@@ -15,25 +17,14 @@ class ListBetNumber extends Component
     public $bet_customer;
     public $bet_mobile;
 
-    // 
+    // Store rood number render
     public $roodNumberArray;
 
     // for confirm delete
     public $confirming = false;
 
     // เก็บข้อมูลเลขการแทง
-    public $list_bet_number = [
-        
-            /* Example data.
-            [
-                'bet_number' => '56',
-                'amount_baht' => '100',
-                'bet_type' => '3 ตัวเล่าง',
-                'bet_type_id' => ''
-                'amount_reward' => '9000'
-            ]
-            */
-        ];
+    public $list_bet_number = [];
 
     protected $listeners = [
         'customer_profile' => 'show_customer_profile',
@@ -50,14 +41,14 @@ class ListBetNumber extends Component
     public function add_bet_number($input_number, $amount_bet, $bet_type)
     {
         $model = BetType::where('flag_code', '=', $bet_type)->first();
-            
-        $this->list_bet_number[] = [
-            'bet_number' =>  $input_number,
+
+        BetTemp::create([
+            'bet_number' =>  (string)$input_number,
             'amount_baht' => $amount_bet,
             'bet_type' =>  $model->name,
             'bet_type_id' => $model->id, // for referent
             'amount_reward' => ($model->reward_amount_baht * $amount_bet) 
-        ];
+        ]);        
     }
 
     public function add_bet_19_door($input_number, $amount_bet, $bet_type)
@@ -102,22 +93,26 @@ class ListBetNumber extends Component
         for($i = 0; $i <= count($this->roodNumberArray) - 1; $i++) { 
 
             $model = BetType::where('flag_code', '=', $bet_type)->first();
-            
-            $this->list_bet_number[] = [
-                'bet_number' =>  $this->roodNumberArray[$i],
+           
+            BetTemp::create([
+                'bet_number' => (string)$this->roodNumberArray[$i],
                 'amount_baht' => $amount_bet,
                 'bet_type' =>  $model->name,
                 'bet_type_id' => $model->id, // for referent
                 'amount_reward' => ($model->reward_amount_baht * $amount_bet) 
-            ];
+            ]);    
+
         }
     
     }
     
     public function clearBet()
     {
-        unset($this->list_bet_number); 
-        $this->list_bet_number = array(); 
+        $bet_types = BetTemp::all();
+        foreach($bet_types as $item) {
+            $model = BetTemp::find($item->id);
+            $model->delete();
+        }
         $this->confirming = false;
     }
 
@@ -131,24 +126,37 @@ class ListBetNumber extends Component
         $this->confirming = false;
     }
 
+    public function remove($id)
+    {
+        $model = BetTemp::find($id);
+        $number_delete = $model->bet_number;
+        $model->delete();
+        $this->alert('success', __('label.msg_delete_success', ['attribute' => $number_delete]));
+    }
+
     public function confirmBet()
     {
-        
-        if(count($this->list_bet_number) == 0){
-            $this->alert('Warning', __('label.msg_confirm_bet_warninng'));
+        if(BetTemp::count() == 0){
+            $this->alert('warning', __('label.msg_confirm_bet_warninng'));
+            return;
+        }
+
+        if($this->bet_customer == "") { 
+            $this->alert('error', __('กรุณาตรวจสอบชื่อโพย'));
             return;
         }
         
-        foreach($this->list_bet_number as $item) { 
+        foreach(BetTemp::all() as $item) { 
             
             BetTransaction::create([
                 'bet_customer_name' => $this->bet_customer,
                 'bet_customer_mobile' => $this->bet_mobile,
-                'bet_number' => $item['bet_number'],
-                'bet_amount' => $item['amount_baht'],
-                'bet_type_id' => $item['bet_type_id'],
+                'bet_number' => $item->bet_number,
+                'bet_amount' => $item->amount_baht,
+                'bet_type_id' => $item->bet_type_id,
                 'payment_status' => 'NO'
             ]);
+            
         }
         
         // Call Clear Bet
@@ -165,7 +173,6 @@ class ListBetNumber extends Component
     {
         $this->customer_name = 'ไม่ได้ระบุ';
         $this->mobile = "ไม่ได้ระบุ";
-
-        return view('livewire.list-bet-number.index');
+        return view('livewire.list-bet-number.index',['bet_temps' => BetTemp::all()]);
     }
 }

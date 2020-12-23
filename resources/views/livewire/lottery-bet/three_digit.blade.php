@@ -1,11 +1,18 @@
 <div class="row ">
-    <div class="col-xl-12 col-md-12 mb-12 form-group">
+    <div class="col-xl-6 col-md-6 mb-6 form-group">
         <p>
             <strong>
                 {{ $bet_type_title }}
             </strong>
             <hr/>
         </p>
+    </div>
+    <div class="col-xl-6 col-md-6 mb-6 form-group">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" wire:model="is_revest">
+                <label class="form-check-label" for="inlineCheckbox1">กลับเลข</label>
+            </div>
+            <hr/>
     </div>
 </div>
 

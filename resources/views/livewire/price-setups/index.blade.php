@@ -44,7 +44,7 @@
                                     </a>
                                 </span>
                                 {{ $item->name }}
-                                <span class="badge badge-primary badge-info">
+                                <span class="badge badge-primary badge-info" style="font-size: 16px;">
                                     {{ $item->reward_amount_baht }}
                                 </span>
                             </li>

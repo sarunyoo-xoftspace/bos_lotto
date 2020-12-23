@@ -24,9 +24,9 @@
                     เลขโพย
                 </strong>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-2 text-center">
                 <strong>
-                    จำนวนเงิน(บาท)
+                    เงิน(บาท)
                 </strong>
             </div>
             <div class="col-md-3 text-center">
@@ -39,29 +39,41 @@
                     รางวัลถูกหวย
                 </strong>
             </div>
+            <div class="col-md-1 text-center">
+                <strong>
+                </strong>
+            </div>
         </div>
 
+        {{--
         @foreach ($list_bet_number as $item)
+        --}}    
+        @foreach ($bet_temps as $item)
             <div class="row">
                 <div class="col-md-3 text-center">
                     <strong>
-                        {{ $item['bet_number'] }}
+                        {{ $item->bet_number }}
+                    </strong>
+                </div>
+                <div class="col-md-2 text-center">
+                    <strong>
+                        {{ $item->amount_baht }}
                     </strong>
                 </div>
                 <div class="col-md-3 text-center">
                     <strong>
-                        {{ $item['amount_baht'] }}
+                        {{ $item->bet_type }}
                     </strong>
                 </div>
                 <div class="col-md-3 text-center">
                     <strong>
-                        {{ $item['bet_type'] }}
+                        {{ number_format($item->amount_reward,2) }}
                     </strong>
                 </div>
-                <div class="col-md-3 text-center">
-                    <strong>
-                        {{ $item['amount_reward'] }}
-                    </strong>
+                <div class="col-md-1 text-center">
+                    <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" wire:click="remove('{{ $item->id }}')">
+                        <i class="fas fa-trash"></i>
+                    </a>
                 </div>
             </div>
         @endforeach
@@ -85,8 +97,6 @@
                         {{ __('ลบโพยแทงหวย')}}
                     </button>
                 @endif
-
-                
             </div>
             <div class="col-md-4">
                 <button type="button" class="btn btn-block btn-outline-primary" wire:click="confirmBet">

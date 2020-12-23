@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\GovernmentLottery;
 use App\Models\BetType;
 use App\Models\BetTransaction;
+use App\Models\NumberLimit;
 use Debugbar;
 
 class Dashboard extends Component
@@ -63,9 +64,7 @@ class Dashboard extends Component
             $bet_trans = BetTransaction::where("bet_type_id", '=', $item->id)->get();
             
             foreach($bet_trans as $bet_item) { 
-                
                 $this->process($item, $bet_trans);
-                
             }
             
             $step1 = false;
@@ -79,7 +78,6 @@ class Dashboard extends Component
 
         switch ($betType->cal_type) {
             case 'cal_three_digit_top':
-                # code...
                 $this->cal_three_digit_top($betType, $bet_trans);
                 $this->progresScore = 30;
                 break;
@@ -94,12 +92,14 @@ class Dashboard extends Component
                 $this->progresScore = 50;
                 break;
             
-            case 'cal_32':
-                
+            case 'cal_two_digit_bottom':
+                $this->cal_two_digit_bottom($betType, $bet_trans);
+                $this->progresScore = 60;
                 break;
             
-            case 'cal_42': 
-                #
+            case 'cal_tod_top':
+                $this->cal_tod_top($betType, $bet_trans);
+                $this->progresScore = 70;
                 break;
 
             default:
@@ -112,19 +112,23 @@ class Dashboard extends Component
 
     private  function cal_three_digit_top($betType, $bet_trans)
     {
-        # code...
         $lottery = GovernmentLottery::where("id" , "<>", "'")->first();
-
         $reward_three_digit = substr($lottery->first_prize, 3, 3);
-        
-        Debugbar::info("รางวัลที่ 1 > " . $lottery->first_prize . " 3 ตัวบน " .$reward_three_digit);
-
         foreach($bet_trans as $item) {
         
             if($item->bet_number == $reward_three_digit) { 
-                Debugbar::info(" คุณถูกรางวัล 3 ตัวบน" . $item->bet_number );
+                
                 $correct_tran = BetTransaction::find($item->id);
-                $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
+                $reward_amount = 0;
+
+                // Check Price Limit
+                if($model_number = NumberLimit::where("number_limit", '=', $item->bet_number)->first())
+                {
+                    $correct_tran->payment_amount = (( $betType->reward_amount_baht * $correct_tran->bet_amount ) * $model_number->payment_amount_percent ) / 100;
+                } else {
+                    $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
+                }
+                
                 $correct_tran->flag_is_correct = "YES";
                 $correct_tran->payment_status = "NO";
                 $correct_tran->save();   
@@ -134,7 +138,6 @@ class Dashboard extends Component
 
     private  function cal_three_digit_bottom($betType, $bet_trans)
     {
-        # code...
         $lottery = GovernmentLottery::where("id" , "<>", "'")->first();
 
         foreach($bet_trans as $item) {
@@ -144,9 +147,26 @@ class Dashboard extends Component
                 $item->bet_number == $lottery->three_digit_suffix_1 || $item->bet_number == $lottery->three_digit_suffix_2
                 ) { 
 
+                /*
                 Debugbar::info(" คุณถูกรางวัล 3 ตัวบน" . $item->bet_number );
                 $correct_tran = BetTransaction::find($item->id);
                 $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
+                $correct_tran->flag_is_correct = "YES";
+                $correct_tran->payment_status = "NO";
+                $correct_tran->save();
+                */
+
+                $correct_tran = BetTransaction::find($item->id);
+                $reward_amount = 0;
+
+                // Check Price Limit
+                if($model_number = NumberLimit::where("number_limit", '=', $item->bet_number)->first())
+                {
+                    $correct_tran->payment_amount = (( $betType->reward_amount_baht * $correct_tran->bet_amount ) * $model_number->payment_amount_percent ) / 100;
+                } else {
+                    $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
+                }
+                
                 $correct_tran->flag_is_correct = "YES";
                 $correct_tran->payment_status = "NO";
                 $correct_tran->save();   
@@ -160,38 +180,97 @@ class Dashboard extends Component
         $two_top_digit = substr($lottery->first_prize, 4, 2);   
         foreach($bet_trans as $item) {    
             if($item->bet_number ==  $two_top_digit) {
-               
+                /* 
                 Debugbar::info(" คุณถูกรางวัล 2 ตัวบน" . $item->bet_number );
                 $correct_tran = BetTransaction::find($item->id);
                 $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
                 $correct_tran->flag_is_correct = "YES";
                 $correct_tran->payment_status = "NO";
                 $correct_tran->save();   
+                */
+                $correct_tran = BetTransaction::find($item->id);
+                $reward_amount = 0;
 
+                // Check Price Limit
+                if($model_number = NumberLimit::where("number_limit", '=', $item->bet_number)->first())
+                {
+                    $correct_tran->payment_amount = (( $betType->reward_amount_baht * $correct_tran->bet_amount ) * $model_number->payment_amount_percent ) / 100;
+                } else {
+                    $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
+                }
+                
+                $correct_tran->flag_is_correct = "YES";
+                $correct_tran->payment_status = "NO";
+                $correct_tran->save();  
             }
         }
     }
-    
     
     private  function cal_two_digit_bottom($betType, $bet_trans)
     {
         $lottery = GovernmentLottery::where("id" , "<>", "'")->first();
         foreach($bet_trans as $item) {    
             if($item->bet_number ==  $lottery->two_digit_suffix) {
+                /* 
                 Debugbar::info(" คุณถูกรางวัล 2 ตัวบน" . $item->bet_number );
                 $correct_tran = BetTransaction::find($item->id);
                 $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
                 $correct_tran->flag_is_correct = "YES";
                 $correct_tran->payment_status = "NO";
-                $correct_tran->save();   
+                $correct_tran->save();
+                */
+                $correct_tran = BetTransaction::find($item->id);
+                $reward_amount = 0;
 
+                // Check Price Limit
+                if($model_number = NumberLimit::where("number_limit", '=', $item->bet_number)->first())
+                {
+                    $correct_tran->payment_amount = (( $betType->reward_amount_baht * $correct_tran->bet_amount ) * $model_number->payment_amount_percent ) / 100;
+                } else {
+                    $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
+                }
+                
+                $correct_tran->flag_is_correct = "YES";
+                $correct_tran->payment_status = "NO";
+                $correct_tran->save();  
             }
         }
     }
 
-    
+    private  function cal_tod_top($betType, $bet_trans)
+    {
+        
+        $lottery = GovernmentLottery::where("id" , "<>", "'")->first();
+        $reward_three_digit = substr($lottery->first_prize, 3, 3);
 
-    
+        foreach($bet_trans as $item) {
+        
+            if($item->bet_number == $reward_three_digit) { 
+               /* 
+                $correct_tran = BetTransaction::find($item->id);
+                $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
+                $correct_tran->flag_is_correct = "YES";
+                $correct_tran->payment_status = "NO";
+                $correct_tran->save();
+                $correct_tran = BetTransaction::find($item->id);
+                $reward_amount = 0;
+                */
+                
+                // Check Price Limit
+                if($model_number = NumberLimit::where("number_limit", '=', $item->bet_number)->first())
+                {
+                    $correct_tran->payment_amount = (( $betType->reward_amount_baht * $correct_tran->bet_amount ) * $model_number->payment_amount_percent ) / 100;
+                } else {
+                    $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
+                }
+                
+                $correct_tran->flag_is_correct = "YES";
+                $correct_tran->payment_status = "NO";
+                $correct_tran->save();  
+            }   
+        }
+    }
+
     public function render()
     {
         return view('livewire.dashboard');
