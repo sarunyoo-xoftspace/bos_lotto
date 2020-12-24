@@ -12,15 +12,16 @@
             <input type="checkbox" class="custom-control-input" id="is_revest" wire:model="is_revest">
             <label class="custom-control-label" for="is_revest">กลับเลข</label>
         </div>
+        <hr/>
     </div>
 </div>
 
 <div class="row">
     <div class="col-xl-4 col-md-4 mb-4 form-group">
-        <input type="text" class="form-control @error('twoNumbetBet') is-invalid @enderror" 
-        wire:model="twoNumbetBet"  
-        placeholder="กรอกตัวเลข 2 ตัว" maxlength="2"/>
-        @error('twoNumbetBet')
+        <input type="text" class="form-control @error('threeNumbetBet') is-invalid @enderror" 
+        wire:model="threeNumbetBet"  
+        placeholder="กรอกตัวเลข 3 ตัว" maxlength="3"/>
+        @error('threeNumbetBet')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
@@ -33,7 +34,7 @@
     </div>
     
     <div class="col-xl-4 col-md-4 mb-4 form-group">
-        <button type="button" class="btn btn-block btn-warning" wire:click="addBetTwoDigit">
+        <button type="button" class="btn btn-block btn-warning" wire:click="addBetThreeDigitCouple">
             {{ __('ยืนยันการแทง') }}
         </button>
     </div>

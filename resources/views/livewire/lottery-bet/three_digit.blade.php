@@ -8,11 +8,10 @@
         </p>
     </div>
     <div class="col-xl-6 col-md-6 mb-6 form-group">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" wire:model="is_revest">
-                <label class="form-check-label" for="inlineCheckbox1">กลับเลข</label>
-            </div>
-            <hr/>
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="is_revest" wire:model="is_revest">
+            <label class="custom-control-label" for="is_revest">กลับเลข</label>
+        </div>
     </div>
 </div>
 

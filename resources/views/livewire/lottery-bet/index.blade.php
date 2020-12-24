@@ -73,6 +73,15 @@
             @include('livewire.lottery-bet.two_digit')
         @endif
         
+        @if ($type == 'three_couple')
+            @include('livewire.lottery-bet.three_couple')
+        @endif
+        
+        @if ($type == 'two_couple')
+            @include('livewire.lottery-bet.two_couple')
+        @endif
+        
+
         @if ($type == 'run_top' || $type == "run_bottom")
             @include('livewire.lottery-bet.run-number')
         @endif

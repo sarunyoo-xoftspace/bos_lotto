@@ -65,12 +65,12 @@
                             </div>
                         </div>
                         
-                        @if($confirming == $lotterId)
+                        @if($confirming != "")
                             <div class="row form-row no-gutters">
                                 <div class="col-xl-3 col-md-3 mb-3 form-group">
                                 </div>
                                 <div class="col-xl-6 col-md-6 mb-6 form-group">
-                                    <a href="javascript:void(0)" class="btn btn-danger btn-icon-split">
+                                    <a href="javascript:void(0)" class="btn btn-danger btn-icon-split" wire:click="destoy">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                         </span>

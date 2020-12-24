@@ -32,7 +32,7 @@ class PriceSetups extends Component
     public function mount()
     {
         $this->mode = "list";
-        $this->betTypes = BetType::all();
+        $this->betTypes = BetType::where('flag_calculate', '=', 'YES')->get();
     }
 
     public function update()
@@ -49,7 +49,8 @@ class PriceSetups extends Component
         }
 
         $this->mode = "list";        
-        $this->betTypes = BetType::all();
+        // $this->betTypes = BetType::all();
+        $this->betTypes = BetType::where('flag_calculate', '=', 'YES')->get();
     }
 
     public function edit($id) { 

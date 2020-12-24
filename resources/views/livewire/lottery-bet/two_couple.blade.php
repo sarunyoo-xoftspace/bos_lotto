@@ -12,6 +12,7 @@
             <input type="checkbox" class="custom-control-input" id="is_revest" wire:model="is_revest">
             <label class="custom-control-label" for="is_revest">กลับเลข</label>
         </div>
+        <hr/>
     </div>
 </div>
 
@@ -33,7 +34,7 @@
     </div>
     
     <div class="col-xl-4 col-md-4 mb-4 form-group">
-        <button type="button" class="btn btn-block btn-warning" wire:click="addBetTwoDigit">
+        <button type="button" class="btn btn-block btn-warning" wire:click="addBetTwoDigitCounple">
             {{ __('ยืนยันการแทง') }}
         </button>
     </div>

@@ -80,7 +80,7 @@ class Batche extends Component
         $model->delete();
 
         $this->confirming = "";
-        $this->lotterId = "";
+        // $this->lotterId = "";
 
         $this->emitTo('show-lottery-date', 'show_lottery_date');
         $this->isExisting = false;

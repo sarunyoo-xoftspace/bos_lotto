@@ -13,7 +13,7 @@ class BetType extends Model
 
     protected $fillable = [
         "name",
-        "flag_door",
+        "flag_calculate",
         "flag_code ",
         "reward_amount_baht",
         "cal_type"

@@ -107,7 +107,8 @@ class NumberLimit extends Component
             $ele_amnt = $this->factorial($num);
             $output = array();
             
-                while(count($output) < $ele_amnt){
+            //while(count($output) < $ele_amnt){
+            for($i = 0; $i < 200; $i++){
                 shuffle($_a);
                 $justnumber = implode("",$_a);	
                 if(!in_array( $justnumber , $output))

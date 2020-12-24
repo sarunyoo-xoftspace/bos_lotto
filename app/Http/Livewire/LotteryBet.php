@@ -168,7 +168,8 @@ class LotteryBet extends Component
             $ele_amnt = $this->factorial($num);
             $output = array();
             
-            while(count($output) < $ele_amnt){
+            // while(count($output) < $ele_amnt){
+            for($i = 0; $i < 200; $i++){
                 shuffle($_a);
                 $justnumber = implode("",$_a);	
                 if(!in_array( $justnumber , $output))
@@ -193,7 +194,54 @@ class LotteryBet extends Component
         $this->bathBetPerNumber = "";
         $this->is_revest = false;
     }
-    
+
+    public function addBetThreeDigitCouple ()
+    {
+        $this->validate([
+            'threeNumbetBet' => 'required|numeric|digits:3',
+            'bathBetPerNumber' => 'required|numeric',
+        ]);
+
+        if($this->is_revest == true){
+        
+            $a = $this->threeNumbetBet;
+            $_a = str_split($a);
+            
+            $num= count($_a);
+            $ele_amnt = $this->factorial($num);
+            $output = array();
+            
+            // while(count($output) < $ele_amnt){
+            for($i = 0; $i < 200; $i++){
+                shuffle($_a);
+                $justnumber = implode("",$_a);	
+                if(!in_array( $justnumber , $output))
+                    $output[] = $justnumber;
+            
+            }
+            sort($output);
+            
+            foreach($output as $key => $val){
+                // Fix Type Three Top and Bottom
+                $this->emitTo('list-bet-number', 'add_bet_number', $val, $this->bathBetPerNumber, 'three_top');
+                $this->emitTo('list-bet-number', 'add_bet_number', $val, $this->bathBetPerNumber, 'three_bottom');
+            }
+        
+        } else {
+            // Fix Type Three Top And Bottom
+            $this->emitTo('list-bet-number', 'add_bet_number', $this->threeNumbetBet, $this->bathBetPerNumber, 'three_top');
+            $this->emitTo('list-bet-number', 'add_bet_number', $this->threeNumbetBet, $this->bathBetPerNumber, 'three_bottom');
+        }
+
+        $this->alert('success', __('label.msg_confirm_bet_success'));
+
+        // Reset Form Bet 
+        $this->type = "";
+        $this->threeNumbetBet = "";
+        $this->bathBetPerNumber = "";
+        $this->is_revest = false;
+    }
+
     public function addBetTwoDigit()
     {
         $this->validate([
@@ -201,7 +249,6 @@ class LotteryBet extends Component
             'bathBetPerNumber' => 'required|numeric',
         ]);
 
-        
         if($this->is_revest == true){
         
             $a = $this->twoNumbetBet;
@@ -211,7 +258,8 @@ class LotteryBet extends Component
             $ele_amnt = $this->factorial($num);
             $output = array();
             
-            while(count($output) < $ele_amnt){
+            // while(count($output) < $ele_amnt){
+            for($i = 0; $i < 200; $i++){
                 shuffle($_a);
                 $justnumber = implode("",$_a);	
                 if(!in_array( $justnumber , $output))
@@ -226,6 +274,52 @@ class LotteryBet extends Component
         
         } else {
             $this->emitTo('list-bet-number', 'add_bet_number', $this->twoNumbetBet, $this->bathBetPerNumber, $this->type);
+        }
+
+        $this->alert('success', __('label.msg_confirm_bet_success'));
+
+        // Reset Form Bet 
+        $this->type = "";
+        $this->twoNumbetBet = "";
+        $this->bathBetPerNumber = "";
+        $this->is_revest = false;
+    }
+
+
+    public function addBetTwoDigitCounple()
+    {
+        $this->validate([
+            'twoNumbetBet' => 'required|numeric|digits:2',
+            'bathBetPerNumber' => 'required|numeric',
+        ]);
+
+        if($this->is_revest == true){
+        
+            $a = $this->twoNumbetBet;
+            $_a = str_split($a);
+            
+            $num= count($_a);
+            $ele_amnt = $this->factorial($num);
+            $output = array();
+            
+            // while(count($output) < $ele_amnt){
+            for($i = 0; $i < 200; $i++){
+                shuffle($_a);
+                $justnumber = implode("",$_a);	
+                if(!in_array( $justnumber , $output))
+                    $output[] = $justnumber;
+            
+            }
+            sort($output);
+            
+            foreach($output as $key => $val){
+                $this->emitTo('list-bet-number', 'add_bet_number', $val, $this->bathBetPerNumber, "two_top");
+                $this->emitTo('list-bet-number', 'add_bet_number', $val, $this->bathBetPerNumber, "two_bottom");
+            }
+            
+        } else {
+            $this->emitTo('list-bet-number', 'add_bet_number', $this->twoNumbetBet, $this->bathBetPerNumber, "two_top");
+            $this->emitTo('list-bet-number', 'add_bet_number', $this->twoNumbetBet, $this->bathBetPerNumber, "two_bottom");
         }
 
         $this->alert('success', __('label.msg_confirm_bet_success'));
