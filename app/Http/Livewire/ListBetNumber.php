@@ -150,7 +150,7 @@ class ListBetNumber extends Component
             
             BetTransaction::create([
                 'bet_customer_name' => $this->bet_customer,
-                'bet_customer_mobile' => $this->bet_mobile,
+                'bet_customer_mobile' => !empty($this->bet_mobile) ? $this->bet_mobile : "",
                 'bet_number' => $item->bet_number,
                 'bet_amount' => $item->amount_baht,
                 'bet_type_id' => $item->bet_type_id,

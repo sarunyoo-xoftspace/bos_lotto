@@ -6,4 +6,6 @@
 
 @section('content')
     @livewire('dashboard')
+    <br>
+    @livewire('clear-transaction')
 @endsection

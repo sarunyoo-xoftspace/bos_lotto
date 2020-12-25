@@ -54,8 +54,6 @@ class Dashboard extends Component
         // 1. Get all BET TYPE
         foreach(BetType::all() as $item){
             
-            Debugbar::info("Bet Type : " . $item->name );
-            
             // Step 1
             if($step1 == true){
                 $this->progresScore = 20;

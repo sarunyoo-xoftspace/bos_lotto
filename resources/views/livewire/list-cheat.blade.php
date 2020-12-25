@@ -16,14 +16,12 @@
 
                         <div class="col-xl-6 col-md-6 mb-6 text-right">
                             @if($isShowDetail)
-
                                 <a href="{{ route('list-cheat')}}" class="btn btn-secondary btn-icon-split">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-arrow-left"></i>
                                     </span>
                                     <span class="text">กลับ</span>
                                 </a>
-                                
                             @endif
                         </div>
                     </div>
@@ -31,8 +29,6 @@
             </div>
         </div>
     </div>
-
-   
     <br/>
 
     @if($isShowDetail)
@@ -58,45 +54,84 @@
                 <br>
                 
                 <div class="row">
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-3 text-center">
+                        <strong>
+                            ลำดับ
+                        </strong>
+                    </div>
+                    <div class="col-md-3 text-center">
                         <strong>
                             เลขโพย
                         </strong>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-3 text-center">
                         <strong>
                             เงิน(บาท)
                         </strong>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-3 text-center">
                         <strong>
                             ประเภทหวย
                         </strong>
                     </div>
                 </div>
         
+                @php 
+                    $index = 1;
+                    $summary_bet_amount =  0;
+                @endphp
+
                 @foreach ($bet_details as $item)
                     <div class="row">
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-3 text-center">
+                            {{ $index }}
+                        </div>
+                        <div class="col-md-3 text-center">
                             <strong>
                                 {{ $item->bet_number }}
                             </strong>
                         </div>
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-3 text-center">
                             <strong>
-                                {{ $item->bet_amount }}
+                                {{ number_format($item->bet_amount,2) }}
                             </strong>
                         </div>
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-3 text-center">
                             <strong>
                                 {{ $item->bet_type_name }}
                             </strong>
                         </div>
                     </div>
+                    @php 
+                        $index++;
+                        $summary_bet_amount += $item->bet_amount;
+                    @endphp 
                 @endforeach
+                <div class="row border-bottom-success">
+                    <div class="col-md-12 text-center">
+                    </div>
+                </div>
+                <div class="row border-bottom-success">
+                    <div class="col-md-3 text-center">
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <strong>
+                            รวมเงินทั้งหมด
+                        </strong>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <strong>
+                            {{ number_format($summary_bet_amount,2) }}
+
+                            &nbsp;
+                            บาท
+                        </strong>
+                    </div>
+                    <div class="col-md-3 text-center">
+                    </div>
+                </div>
             </div>
         </div>
-
 
     @else
     
@@ -123,6 +158,9 @@
                                 {{ __('label.mobile') }}
                             </th>
                             <th>
+                                รวมเงินทั้งหมด
+                            </th>
+                            <th>
                                 
                             </th>
                         </tr>
@@ -135,12 +173,23 @@
                                     {{ $item->bet_customer_name }}
                                 </td>
                                 <td>
-                                    {{ $item->bet_customer_mobile}}
+                                    @empty($item->bet_customer_mobile)
+                                        {{ __('ไม่ได้ระบุ')}}
+                                    @endempty
+                                    {{ $item->bet_customer_mobile }}
+                                </td>
+                                <td>
+                                    {{ number_format($item->sum_bet_amount, 2) }}
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" class="btn btn-info btn-circle" wire:click="showDetail('{{$item->bet_customer_name}}','{{$item->bet_customer_mobile}}')">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
+                                    {{--
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-circle" wire:click="showDetail('{{$item->bet_customer_name}}','{{$item->bet_customer_mobile}}')">
+                                        <i class="fas fa-print"></i>
+                                    </a>
+                                    --}}
                                 </td>
                             </tr>
                         @endforeach

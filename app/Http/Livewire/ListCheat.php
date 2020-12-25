@@ -46,7 +46,6 @@ class ListCheat extends Component
         
         $this->bet_details = DB::table('bet_transactions')
             ->join('bet_types', 'bet_types.id' , '=' , 'bet_transactions.bet_type_id')
-            // ->select("bet_transactions.*")
             ->select("bet_transactions.id", "bet_customer_name", "bet_customer_mobile", "bet_number", "bet_amount", "bet_types.name as bet_type_name")
             ->where('bet_transactions.bet_customer_name', '=', $c)
             ->where('bet_transactions.bet_customer_mobile', '=', $m)
@@ -58,7 +57,7 @@ class ListCheat extends Component
     {
         return view('livewire.list-cheat',[
             'items' =>  DB::table('bet_transactions')
-                        ->select("bet_customer_name", "bet_customer_mobile")
+                        ->select("bet_customer_name", "bet_customer_mobile",  DB::raw('sum(bet_amount) as sum_bet_amount'))
                         ->where('bet_transactions.bet_customer_name', 'like', '%'.$this->search.'%')
                         ->groupBy('bet_customer_name', 'bet_customer_mobile')
                         ->paginate(10)
