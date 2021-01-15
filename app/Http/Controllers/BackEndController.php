@@ -32,6 +32,11 @@ class BackEndController extends Controller
     {
         return view('backend.print-bet-correct');
     }
+
+    public function PrintBetTransaction()
+    {
+        return view('backend.print-bet-transaction');
+    }
     
 
 }

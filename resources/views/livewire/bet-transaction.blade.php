@@ -15,6 +15,9 @@
                         </div>
 
                         <div class="col-xl-6 col-md-6 mb-6 text-right">
+                            <a href="{{ route('print-bet-transaction') }}" target="_bank" class="btn btn-primary btn-circle btn-lg">
+                                <i class="fas fa-print"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -47,14 +50,17 @@
                         <th>
                             {{ __('label.mobile') }}
                         </th>
-                        <th>
+                        <th class="text-center">
                             {{ __('label.bet_number') }}
                         </th>
-                        <th>
+                        <th class="text-center">
                             {{ __('label.bet_type') }}
                         </th>
-                        <th>
+                        <th class="text-right">
                             {{ __('label.bet_amount') }}
+                        </th>
+                        <th class="text-right">
+                            ยอดเงินเกินกำหนดไว้
                         </th>
                     </tr>
                 </thead>
@@ -68,14 +74,17 @@
                             <td>
                                 {{ $item->bet_customer_mobile}}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $item->bet_number}}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $item->bet_type_name }}
                             </td>
-                            <td>
-                                {{ $item->bet_amount}}
+                            <td class="text-right">
+                                {{ number_format($item->bet_amount,2) }}
+                            </td>
+                            <td class="text-right">
+                                {{ number_format($item->separate_bet_amount,2) }}
                             </td>
                         </tr>
                     @endforeach

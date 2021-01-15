@@ -134,6 +134,8 @@ class Dashboard extends Component
 
                 $this->updateBetTransaction($bet_trasn, $betType);
 
+            } else {
+                $this->updateSeparate($bet_trasn, $betType);
             }
         }
     }
@@ -152,6 +154,8 @@ class Dashboard extends Component
             )
             { 
                 $this->updateBetTransaction($bet_trasn, $betType);
+            } else {
+                $this->updateSeparate($bet_trasn, $betType);
             }
                       
         }
@@ -168,6 +172,8 @@ class Dashboard extends Component
             if($bet_trasn->bet_number ==  $two_top_digit) 
             {
                 $this->updateBetTransaction($bet_trasn, $betType);
+            } else {
+                $this->updateSeparate($bet_trasn, $betType);
             }
         }
     }
@@ -182,6 +188,8 @@ class Dashboard extends Component
             if($bet_trasn->bet_number ==  $lottery->two_digit_suffix) 
             {
                 $this->updateBetTransaction($bet_trasn, $betType); 
+            } else {
+                $this->updateSeparate($bet_trasn, $betType);
             }
         }
     }
@@ -201,6 +209,8 @@ class Dashboard extends Component
             if($pos !== false) 
             {
                 $this->updateBetTransaction($bet_trasn, $betType);    
+            } else {
+                $this->updateSeparate($bet_trasn, $betType);
             }
 
         }
@@ -219,6 +229,8 @@ class Dashboard extends Component
             
             if($pos !== false) {
                 $this->updateBetTransaction($bet_trasn, $betType); 
+            } else {
+                $this->updateSeparate($bet_trasn, $betType);
             }
         }
     }
@@ -237,6 +249,8 @@ class Dashboard extends Component
             if($isCorrect) 
             {
                 $this->updateBetTransaction($bet_trasn, $betType); 
+            } else {
+                $this->updateSeparate($bet_trasn, $betType);
             }
         }       
     }
@@ -286,9 +300,30 @@ class Dashboard extends Component
         $bet_trasn->save();
     }
 
-    public function FunctionName()
+    // ปรับปรุงส่วนแบ่ง
+    public function updateSeparate($bet_trasn, $betType)
     {
-        # code...
+        // เงินแทงมากกว่าเงินที่กำหนดไว้
+        if($bet_trasn->bet_amount > $betType->payment_limit) {
+            
+            // Banckup Old bet amount.
+            $bet_trasn->old_bet_amount = $bet_trasn->bet_amount;
+
+            // เอาอยคงเหลือที่เกิน ตั้งไว้
+            $separateBetAmount = $bet_trasn->bet_amount - $betType->payment_limit;
+
+            // ยอดที่เกิน 
+            $bet_trasn->separate_bet_amount = $separateBetAmount;
+
+            // เอายอดที่ห้กเกินแล้ว
+            $bet_trasn->bet_amount = $bet_trasn->bet_amount - $separateBetAmount; 
+        }
+    
+        $bet_trasn->flag_is_correct = "NO";
+        $bet_trasn->payment_status = "NO";
+        $bet_trasn->save();
+        
+
     }
     
     // วิธีการคำนวน 3 ตัวโต๊ด

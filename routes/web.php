@@ -59,7 +59,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/payment-limit', [BackEndController::class, 'paymentLimit'])->name('payment-limit');
 
     Route::get('/print-bet-correct', [BackEndController::class, 'printBetCorrect'])->name('print-bet-correct');
+    
+    Route::get('/print-bet-transaction', [BackEndController::class, 'PrintBetTransaction'])->name('print-bet-transaction');
 
+
+    
     
  
 });
