@@ -31,7 +31,8 @@ class ClearTransaction extends Component
         // 3. Clear reward
         GovernmentLottery::truncate();
         $this->processScoreClear = 100;
-    
+
+        $this->emitTo('dashboard', 'update_darhboard');    
     }
 
     public function clearProcessScore()

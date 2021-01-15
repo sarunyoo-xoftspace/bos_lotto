@@ -29,6 +29,8 @@ class LotteryBet extends Component
     // 2 ตัว
     public $twoNumbetBet;
     
+    // เก็บเลขวิ่ง
+    public $runNumberBet;
     
     // จำนวนเงินบาทที่แทง
     public $bathBetPerNumber;
@@ -141,6 +143,29 @@ class LotteryBet extends Component
         $this->numberDoorInput = "";
         $this->bathBetPerNumber = "";
         $this->roodNumberArray = array();
+    }
+
+    public function addRunBetNumber()
+    {
+        // 1. Validate Profile Name
+        $this->validate([
+            'customer_name' => 'required',
+            'bathBetPerNumber' => 'required|numeric',
+            'runNumberBet' => 'required|numeric'
+        ]);
+
+        // 2. เพิ่มเลข ใส่ LIST
+        $this->emitTo('list-bet-number', 'add_bet_number', $this->runNumberBet, $this->bathBetPerNumber, $this->type);
+    
+        $this->alert('success', __('label.msg_confirm_bet_success'));
+
+        // 3. Reset Form Bet 
+        $this->type = "";
+        $this->numberDoorInput = "";
+        $this->bathBetPerNumber = "";
+        $this->runNumberBet = "";
+        $this->roodNumberArray = array();
+
     }
     
     public function render()
@@ -284,7 +309,6 @@ class LotteryBet extends Component
         $this->bathBetPerNumber = "";
         $this->is_revest = false;
     }
-
 
     public function addBetTwoDigitCounple()
     {

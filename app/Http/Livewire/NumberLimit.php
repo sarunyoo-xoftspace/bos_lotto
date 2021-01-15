@@ -64,8 +64,6 @@ class NumberLimit extends Component
         ]);
     }
 
-
-
     public function create(){
         $this->actionMode = "insert";
         $this->resetInputFields();

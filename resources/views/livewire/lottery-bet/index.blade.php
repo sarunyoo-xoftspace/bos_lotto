@@ -81,12 +81,9 @@
             @include('livewire.lottery-bet.two_couple')
         @endif
         
-        @if ($type == 'run_top')
-            @include('livewire.lottery-bet.three_run')
+        @if ($type == 'run_top' || $type == "run_bottom")
+            @include('livewire.lottery-bet.run_number')
         @endif
-        
-        @if ($type == "run_bottom")
-            @include('livewire.lottery-bet.run-number')
-        @endif
+    
     </div>
 </div>

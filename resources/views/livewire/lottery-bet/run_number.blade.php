@@ -11,8 +11,8 @@
 
 <div class="row">
     <div class="col-xl-6 col-md-6 mb-6 form-group">
-        <input type="text" class="form-control @error('numberDoorInput') is-invalid @enderror" wire:model="numberDoorInput" wire:keydown="genNumberRood" placeholder="กรอกตัวเลข ๅ ตัว" maxlength="1"/>
-        @error('numberDoorInput')
+        <input type="text" class="form-control @error('runNumberBet') is-invalid @enderror" wire:model="runNumberBet" placeholder="กรอกตัวเลข 1 ตัว" maxlength="1"/>
+        @error('runNumberBet')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
@@ -26,13 +26,17 @@
 
 </div>
 <div class="row">
+
+    {{--
     <div class="col-xl-6 col-md-6 mb-6 form-group">
         <button type="button" class="btn btn-block btn-primary" wire:click="genNumberRood">
             {{ __('แสดงเลขวิ่ง') }}
         </button>
     </div>
+    --}}
+
     <div class="col-xl-6 col-md-6 mb-6 form-group">
-        <button type="button" class="btn btn-block btn-warning" wire:click="confirm19Door">
+        <button type="button" class="btn btn-block btn-warning" wire:click="addRunBetNumber">
             {{ __('ยืนยันการแทง') }}
         </button>
     </div>

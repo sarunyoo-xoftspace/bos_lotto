@@ -180,8 +180,7 @@ return [
         'threeNumbetBet' => 'เลขหวย',
         'bathBetPerNumber' => 'จำนวนเงิน',
         'betTypeRewardAmount' => 'เงินรางวัล',
-        'twoNumbetBet' => "เลขหวย"
-        
+        'twoNumbetBet' => "เลขหวย",
+        'runNumberBet' => "เลขหวย"
     ],
-
 ];

@@ -30,7 +30,8 @@ class ListBetNumber extends Component
         'customer_profile' => 'show_customer_profile',
         'bet_number' => 'show_bet_number',
         'addBet19Door' => 'add_bet_19_door',
-        'add_bet_number' => 'add_bet_number'
+        'add_bet_number' => 'add_bet_number',
+        'add_bet_run' => 'add_bet_run'
     ];
 
     public function show_customer_profile($bet_customer, $bet_mobile) {
