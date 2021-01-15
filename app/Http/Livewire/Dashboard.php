@@ -84,9 +84,6 @@ class Dashboard extends Component
 
     private  function process($betType, $bet_trans)
     {
-        
-        Debugbar::info("Cal Type : " . $betType->cal_type );
-
         switch ($betType->cal_type) {
             case 'cal_three_digit_top':
                 $this->cal_three_digit_top($betType, $bet_trans);
@@ -217,7 +214,7 @@ class Dashboard extends Component
         $lottery = GovernmentLottery::where("id" , "<>", "")->first();
     
         foreach($bet_trans as $bet_trasn) {    
-            
+            // ตรวจสอบว่าถูกหวยหรือเปล่า ?  
             $pos = strpos($lottery->two_digit_suffix, $bet_trasn->bet_number);
             
             if($pos !== false) {
@@ -232,31 +229,17 @@ class Dashboard extends Component
         $lottery = GovernmentLottery::where("id" , "<>", "")->first();
         $reward_three_digit = substr($lottery->first_prize, 3, 3);
 
-        foreach($bet_trans as $item) {    
+        foreach($bet_trans as $bet_trasn) {    
             
-            $isCorrect = $this->calTod3Number($item->bet_number, $reward_three_digit);
+            $isCorrect = $this->calTod3Number($bet_trasn->bet_number, $reward_three_digit);
             
-            if($isCorrect) {
-
-                $correct_tran = BetTransaction::find($item->id);
-                $reward_amount = 0;
-
-                // Check Price Limit
-                if($model_number = NumberLimit::where("number_limit", '=', $item->bet_number)->first())
-                {
-                    $correct_tran->payment_amount = (( $betType->reward_amount_baht * $correct_tran->bet_amount ) * $model_number->payment_amount_percent ) / 100;
-                } else {
-                    $correct_tran->payment_amount = $betType->reward_amount_baht * $correct_tran->bet_amount;
-                }
-                
-                $correct_tran->flag_is_correct = "YES";
-                $correct_tran->payment_status = "NO";
-                $correct_tran->save();  
+            // ตรวจสอบว่าถูกหวยหรือเปล่า ?  
+            if($isCorrect) 
+            {
+                $this->updateBetTransaction($bet_trasn, $betType); 
             }
-        }
-       
+        }       
     }
-
 
     private function updateBetTransaction($bet_trasn, $betType) {
         $reward_amount = 0;
@@ -303,6 +286,10 @@ class Dashboard extends Component
         $bet_trasn->save();
     }
 
+    public function FunctionName()
+    {
+        # code...
+    }
     
     // วิธีการคำนวน 3 ตัวโต๊ด
     public function calTod3Number($number,  $numCorrect) {

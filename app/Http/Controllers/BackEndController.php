@@ -23,9 +23,14 @@ class BackEndController extends Controller
         return view('backend.list-cheat');
     }
 
-    public function paymentLimit(Type $var = null)
+    public function paymentLimit()
     {
         return view('backend.payment-limit');
+    }
+
+    public function printBetCorrect()
+    {
+        return view('backend.print-bet-correct');
     }
     
 
