@@ -55,5 +55,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/batche', [BackEndController::class, 'batche'])->name('batche');
 
     Route::get('/list-cheat', [BackEndController::class, 'listCheat'])->name("list-cheat");
+
+    Route::get('/payment-limit', [BackEndController::class, 'paymentLimit'])->name('payment-limit');
  
 });

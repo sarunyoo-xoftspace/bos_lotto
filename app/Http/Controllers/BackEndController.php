@@ -18,9 +18,15 @@ class BackEndController extends Controller
         return view('backend.batche');
     }
     
-     public function listCheat()
+    public function listCheat()
     {
         return view('backend.list-cheat');
     }
+
+    public function paymentLimit(Type $var = null)
+    {
+        return view('backend.payment-limit');
+    }
+    
 
 }

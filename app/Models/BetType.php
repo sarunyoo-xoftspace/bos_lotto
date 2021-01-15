@@ -16,6 +16,7 @@ class BetType extends Model
         "flag_calculate",
         "flag_code ",
         "reward_amount_baht",
+        "payment_limit",
         "cal_type"
     ];
     

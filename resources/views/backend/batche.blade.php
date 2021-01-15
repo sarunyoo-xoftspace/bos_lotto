@@ -5,5 +5,7 @@
 @endsection
 
 @section('content')
+    
     @livewire("batche")
+
 @endsection

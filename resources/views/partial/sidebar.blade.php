@@ -44,6 +44,9 @@
                 <a class="collapse-item" href="{{ route('number-limit') }}">
                     {{ __('กำหนดเลขอั้น') }}
                 </a>
+                <a class="collapse-item" href="{{ route('payment-limit') }}">
+                    {{ __('กำหนดรับผิดชอบ') }}
+                </a>
             </div>
         </div>
     </li>

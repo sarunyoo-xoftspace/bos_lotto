@@ -181,6 +181,8 @@ return [
         'bathBetPerNumber' => 'จำนวนเงิน',
         'betTypeRewardAmount' => 'เงินรางวัล',
         'twoNumbetBet' => "เลขหวย",
-        'runNumberBet' => "เลขหวย"
+        'runNumberBet' => "เลขหวย",
+        'paymentLimitAmount' => 'ยอดเงินแทงที่รับผิดชอบ'
+        
     ],
 ];

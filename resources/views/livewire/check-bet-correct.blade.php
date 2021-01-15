@@ -78,10 +78,10 @@
                                 {{ $item->bet_type_name }}
                             </td>
                             <td>
-                                {{ $item->bet_amount}}
+                                {{ number_format($item->bet_amount,2) }}
                             </td>
                             <td>
-                                {{ $item->payment_amount }}
+                                {{ number_format($item->payment_amount,2) }}
                             </td>
                         </tr>
                     @endforeach
