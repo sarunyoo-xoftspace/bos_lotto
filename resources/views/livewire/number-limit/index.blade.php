@@ -10,7 +10,7 @@
                                 {{ __('label.number_limit_title') }}
                             </h1>
                             <small>
-                            {{ __('กรณี รองรับหวยรัฐบาลไทย') }}
+                                {{ __('กรณี รองรับหวยรัฐบาลไทย') }}
                             </small>
                         </div>
 
@@ -26,7 +26,8 @@
                                         <i class="fas fa-save"></i>
                                     </a>
                                 @else
-                                    <a href="#" class="btn btn-primary btn-circle btn-lg" wire:click="update({{ $number_limit_id }})">
+                                    <a href="#" class="btn btn-primary btn-circle btn-lg"
+                                        wire:click="update({{ $number_limit_id }})">
                                         <i class="fas fa-save"></i>
                                     </a>
                                 @endif
@@ -39,10 +40,20 @@
         </div>
     </div>
 
-    @if ($isOpen)
-        @include('livewire.number-limit.create')
-    @else
-        @include('livewire.number-limit.datatable')
-    @endif
+    <br>
 
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">
+                {{ __('label.number_limit_title') }}
+            </h6>
+        </div>
+        <div class="card-body">
+            @if ($isOpen)
+                @include('livewire.number-limit.create')
+            @else
+                @include('livewire.number-limit.datatable')
+            @endif
+        </div>
+    </div>
 </div>

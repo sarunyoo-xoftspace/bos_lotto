@@ -53,6 +53,11 @@ class ListCheat extends Component
 
     }
     
+    public function backToPage()
+    {
+        $this->isShowDetail = false;
+    }
+    
     public function render()
     {
         return view('livewire.list-cheat',[

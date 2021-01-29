@@ -1,4 +1,3 @@
-
 <br>
 <br>
 <div class="text-center">
@@ -6,7 +5,7 @@
         รายการนี้เป็น โพย ที่ถูกรางวัล
     </h5>
 </div>
-<table class="table table-sm">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -37,10 +36,10 @@
     </thead>
     <tbody>
         @php
-            $sum_bet_amount = 0;
-            $sum_payment_amount = 0;
-            $sum_separate_bet_amount = 0;
-            $sum_separate_payment_amount = 0;
+        $sum_bet_amount = 0;
+        $sum_payment_amount = 0;
+        $sum_separate_bet_amount = 0;
+        $sum_separate_payment_amount = 0;
         @endphp
 
         @foreach ($items as $item)
@@ -49,32 +48,32 @@
                     {{ $item->bet_customer_name }}
                 </td>
                 <td>
-                    {{ $item->bet_customer_mobile}}
+                    {{ $item->bet_customer_mobile }}
                 </td>
                 <td>
-                    {{ $item->bet_number}}
+                    {{ $item->bet_number }}
                 </td>
                 <td>
                     {{ $item->bet_type_name }}
                 </td>
                 <td class="text-right">
-                    {{ number_format($item->bet_amount,2) }}
+                    {{ number_format($item->bet_amount, 2) }}
                 </td>
                 <td class="text-right">
-                    {{ number_format($item->payment_amount,2) }}
+                    {{ number_format($item->payment_amount, 2) }}
                 </td>
                 <td class="text-right">
-                    {{ number_format($item->separate_bet_amount,2) }}
+                    {{ number_format($item->separate_bet_amount, 2) }}
                 </td>
                 <td class="text-right">
-                    {{ number_format($item->separate_payment_amount,2) }}
+                    {{ number_format($item->separate_payment_amount, 2) }}
                 </td>
             </tr>
-            @php 
-                $sum_bet_amount += $item->bet_amount;
-                $sum_payment_amount += $item->payment_amount;
-                $sum_separate_bet_amount += $item->separate_bet_amount;
-                $sum_separate_payment_amount += $item->separate_payment_amount;
+            @php
+            $sum_bet_amount += $item->bet_amount;
+            $sum_payment_amount += $item->payment_amount;
+            $sum_separate_bet_amount += $item->separate_bet_amount;
+            $sum_separate_payment_amount += $item->separate_payment_amount;
             @endphp
         @endforeach
     </tbody>
@@ -84,22 +83,22 @@
         </td>
         <td class="text-right">
             <strong>
-                {{ number_format($sum_bet_amount,2) }}
+                {{ number_format($sum_bet_amount, 2) }}
             </strong>
         </td>
         <td class="text-right">
             <strong>
-                {{ number_format($sum_payment_amount,2) }}
+                {{ number_format($sum_payment_amount, 2) }}
             </strong>
         </td>
         <td class="text-right">
             <strong>
-                {{ number_format($sum_separate_bet_amount,2) }}
+                {{ number_format($sum_separate_bet_amount, 2) }}
             </strong>
         </td>
         <td class="text-right">
             <strong>
-                {{ number_format($sum_separate_payment_amount,2) }}
+                {{ number_format($sum_separate_payment_amount, 2) }}
             </strong>
         </td>
     </tfoot>

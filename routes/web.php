@@ -24,10 +24,6 @@ Route::get('/clear-cache', function() {
     return "Cache is cleared";
 })->name("clear-cache");
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Route::get('/', function () {
     return redirect(route("login"));
 });
@@ -62,8 +58,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     
     Route::get('/print-bet-transaction', [BackEndController::class, 'PrintBetTransaction'])->name('print-bet-transaction');
 
+    Route::get('/summary-by-type', [BackEndController::class, 'SummaryByType'])->name('summary-by-type');
 
-    
-    
- 
+    Route::get('/bet-over-limit', [BackEndController::class, 'BetOverLimit'])->name('bet-over-limit');
+
 });

@@ -1,4 +1,4 @@
-<br/>
+<br />
 
 <div class='row'>
     <div class="col-xl-12 col-md-12 mb-12 input-group">
@@ -6,29 +6,32 @@
             <span class="input-group-text" id="inputGroup-sizing-default">
                 {{ __('label.btn_search') }}
             </span>
-          </div>
-          <input type="text" wire:model="search" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <input type="text" wire:model="search" class="form-control" aria-label="Default"
+            aria-describedby="inputGroup-sizing-default">
     </div>
 </div>
 
+<br>
+
 <div class="row">
     <div class="col-xl-12 col-md-12 mb-12">
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>
+                    <th class="text-center">
                         {{ __('label.lottery_date') }}
                     </th>
-                    <th>
+                    <th class="text-center">
                         {{ __('label.number_limit') }}
                     </th>
-                    <th>
+                    <th class="text-center">
                         {{ __('label.payment_amount_percent') }}
                     </th>
-                    <th>
+                    <th class="text-center">
                         {{ __('label.payment_amount_baht') }}
                     </th>
-                    <th>
+                    <th class="text-center">
                         {{ __('Action') }}
                     </th>
                 </tr>
@@ -37,20 +40,18 @@
 
                 @foreach ($items as $item)
                     <tr>
-                        <td>
+                        <td class="text-center">
                             {{ $item->lottery_date }}
                         </td>
-                        <td>
-                            {{ $item->number_limit}}
+                        <td class="text-center">
+                            {{ $item->number_limit }}
                         </td>
-                        <td>
-                            {{ $item->payment_amount_percent}}
+                        <td class="text-center">
+                            {{ $item->payment_amount_percent }}
                         </td>
-                        <td>
-                            {{ $item->payment_amount_baht}}
-                        </td>
+                        <td class="text-center"> <small>ระบบยังไม่รองรับ</small> </td>
 
-                        <td>
+                        <td class="text-center">
                             <a href="#" class="btn btn-warning btn-circle btn-sm" wire:click="edit({{ $item->id }})">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>

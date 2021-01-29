@@ -37,6 +37,15 @@ class BackEndController extends Controller
     {
         return view('backend.print-bet-transaction');
     }
-    
+
+    public function SummaryByType()
+    {
+        return view("backend.summary-by-type");
+    }
+
+    public function BetOverLimit()
+    {
+        return view("backend.bet-over-limit");
+    }
 
 }
