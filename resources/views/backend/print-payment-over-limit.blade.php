@@ -54,7 +54,7 @@
 <body>
 
     <page size="A4">
-        @livewire('print-bet-transaction')
+        @livewire('print-over-limit')
     </page>
 
     <!-- Optional JavaScript -->

@@ -5,13 +5,11 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
-class SummaryByType extends Component
+class PrintOverLimit extends Component
 {
-   
     /** Summary Display */
     public $sumaryBetAmount = 0;
     public $summaryPaymentOverLimit = 0;
-    
     public $summaryTrans = [];
 
     private function summaryByType() { 
@@ -32,11 +30,10 @@ class SummaryByType extends Component
         }
                 
     }
-    
+
     public function render()
     {
         $this->summaryByType();
-        return view('livewire.summary-by-type');
+        return view('livewire.print-over-limit');
     }
-    
 }

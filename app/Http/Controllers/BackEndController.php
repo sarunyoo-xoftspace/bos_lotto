@@ -38,6 +38,10 @@ class BackEndController extends Controller
         return view('backend.print-bet-transaction');
     }
 
+    public function printPaymentOverLimit(){ 
+        return view('backend.print-payment-over-limit');
+    }
+
     public function SummaryByType()
     {
         return view("backend.summary-by-type");

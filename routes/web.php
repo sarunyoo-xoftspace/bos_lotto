@@ -58,6 +58,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     
     Route::get('/print-bet-transaction', [BackEndController::class, 'PrintBetTransaction'])->name('print-bet-transaction');
 
+    Route::get('/print-over-limit', [BackEndController::class, 'printPaymentOverLimit'])->name('print-over-limit');
+    
     Route::get('/summary-by-type', [BackEndController::class, 'SummaryByType'])->name('summary-by-type');
 
     Route::get('/bet-over-limit', [BackEndController::class, 'BetOverLimit'])->name('bet-over-limit');

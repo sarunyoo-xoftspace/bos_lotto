@@ -16,13 +16,10 @@
                         </div>
 
                         <div class="col-xl-6 col-md-6 mb-6 text-right">
-
-                            {{--
-                            <a href="#" target="_bank" class="btn btn-primary btn-circle btn-lg">
+                            <a href="{{ route('print-over-limit') }}" target="_bank"
+                                class="btn btn-primary btn-circle btn-lg">
                                 <i class="fas fa-print"></i>
                             </a>
-                            --}}
-
                         </div>
                     </div>
                 </div>
@@ -39,11 +36,9 @@
             </div>
             <div class="col-6 text-right">
 
-                {{--
-                <button type="button" class="btn btn-secondary text-right" wire:click="backToMainPage">
+                {{-- <button type="button" class="btn btn-secondary text-right" wire:click="backToMainPage">
                     กลับ
-                </button>
-                --}}
+                </button> --}}
 
             </div>
             </h6>
@@ -66,6 +61,12 @@
                                 จำนวนเงินที่แทง
                             </th>
                             <th class="text-right">
+                                เงินที่กำหนดไว้
+                            </th>
+                            <th class="text-right">
+                                จำนวนเงินกำหนด
+                            </th>
+                            <th class="text-right">
                                 เงินรางวัล
                             </th>
                         </thead>
@@ -82,13 +83,18 @@
                                     <td class="text-right">
                                         {{ number_format($item->bet_amount, 2) }}
                                     </td>
+                                    <td class="text-right text-primary">
+                                        {{ number_format($item->limit_payment, 2) }}
+                                    </td>
+                                    <td class="text-right text-danger">
+                                        {{ number_format($item->payment_over_limit, 2) }}
+                                    </td>
                                     <td class="text-right">
                                         {{ number_format($item->reward_amount_total, 2) }}
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-
                         <tfoot>
                             <tr>
                                 <td colspan="2" class="text-right">
@@ -96,7 +102,7 @@
                                         รวมเงินทั้งหมด
                                     </strong>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-right text-success">
                                     <strong>
                                         {{ number_format($sumaryBetAmount, 2) }} บาท
                                     </strong>
@@ -104,11 +110,16 @@
                                 <td>
                                     &nbsp;
                                 </td>
+                                <td class="text-right text-danger">
+                                    <strong>
+                                        {{ number_format($summaryPaymentOverLimit, 2) }} บาท
+                                    </strong>
+                                </td>
+                                <td class="text-right">
+                                </td>
                             </tr>
                         </tfoot>
-
                     </table>
-
                 </div>
                 <div class="col-2">
                 </div>
